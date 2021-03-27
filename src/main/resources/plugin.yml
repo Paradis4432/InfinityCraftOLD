@@ -1,0 +1,10 @@
+name: InfinityCraft
+version: ${project.version}
+main: com.infinitycraft.plugin.main
+api-version: 1.16
+prefix: INFINITY
+load: STARTUP
+authors: [ ThinkAlex, Paradis ]
+description: The plugin used to run InfinityCraft
+website: alexandre2006.github.io
+
