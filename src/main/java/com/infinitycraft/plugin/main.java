@@ -1,39 +1,73 @@
 package com.infinitycraft.plugin;
 
-import com.infinitycraft.plugin.commands.chatcolorCommand;
-import com.infinitycraft.plugin.commands.tagCommand;
-import com.infinitycraft.plugin.guis.chatcolorGui;
-import com.infinitycraft.plugin.guis.tagPossGui;
-import com.infinitycraft.plugin.guis.tagsGui;
-import com.infinitycraft.plugin.storageManager.SQLDatabase;
-import com.infinitycraft.plugin.events.inventoryClickListener;
+import com.infinitycraft.plugin.chatManager.chatColor.commands.ChatColorChangerCommand;
+import com.infinitycraft.plugin.chatManager.chatColor.events.ChatColorChangerEvent;
+import com.infinitycraft.plugin.itemManager.affixes.commands.affixesCommand;
+import com.infinitycraft.plugin.itemManager.affixes.events.AffixesGUIEvents;
+import com.infinitycraft.plugin.itemManager.affixes.events.PositionSelectorEvents;
+import com.infinitycraft.plugin.storageManager.DatabaseManager;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public final class main extends JavaPlugin{
+import java.util.Objects;
 
+public final class main extends JavaPlugin{
+    /**
+    Global instance of plugin.
+     */
+    private static main instance;
+
+    /**
+     * Plugin startup logic
+     */
     @Override
     public void onEnable() {
-        try { SQLDatabase.connect(); } catch (Exception e) { e.printStackTrace(); }
-
-        getCommand("tags").setExecutor(new tagCommand());
-        getCommand("chatcolor").setExecutor(new chatcolorCommand());
-
-        new inventoryClickListener(this);
-
-        chatcolorGui.start();
-        tagsGui.start();
-        tagPossGui.start();
-
+        // Setup global instance
+        instance = this;
+        // Connect to database
+        try { DatabaseManager.start(); } catch (Exception e) { e.printStackTrace(); }
+        // Register Events
+        registerEvents();
+        // Register Commands
+        registerCommands();
+        // Send message
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "Infinity Chat Enabled");
     }
 
+    /** Plugin shutoff logic
+     *
+     */
     @Override
     public void onDisable() {
-        try { SQLDatabase.disconnect
-                (); } catch (Exception e) { e.printStackTrace(); }
-
+        // Disconnect from database
+        try { DatabaseManager.stop(); } catch (Exception e) { e.printStackTrace(); }
+        // Send message
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "Infinity Chat Disabled");
+    }
+
+    /**
+     * Makes plugin global
+     * @return plugin
+     */
+    public static main getInstance() {
+        return instance;
+    }
+
+    /**
+     * Registers all the events!
+     */
+    public void registerEvents() {
+        getServer().getPluginManager().registerEvents(new AffixesGUIEvents(), this);
+        getServer().getPluginManager().registerEvents(new PositionSelectorEvents(), this);
+        getServer().getPluginManager().registerEvents(new ChatColorChangerEvent(), this);
+    }
+
+    /**
+     * Registers all the commands!
+     */
+    public void registerCommands() {
+        Objects.requireNonNull(this.getCommand("chatcolor")).setExecutor(new ChatColorChangerCommand());
+        Objects.requireNonNull(this.getCommand("affixes")).setExecutor(new affixesCommand());
     }
 
 

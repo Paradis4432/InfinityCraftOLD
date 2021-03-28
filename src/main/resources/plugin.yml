@@ -7,4 +7,16 @@ load: STARTUP
 authors: [ ThinkAlex, Paradis ]
 description: The plugin used to run InfinityCraft
 website: alexandre2006.github.io
-
+commands:
+  chatcolor:
+    description: "Changes the color of your chat!"
+    aliases: color
+    permission-message: "You don't have the permissions required to use this command!"
+    permission: op
+    usage: /chatcolor
+  affixes:
+    description: "Changes the affixes of your chat"
+    aliases: [prefix, suffix]
+    permission-message: "You don't have the permissions required to use this command!"
+    permission: op
+    usage: /affixes
