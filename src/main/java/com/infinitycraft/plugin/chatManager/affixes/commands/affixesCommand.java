@@ -1,6 +1,6 @@
-package com.infinitycraft.plugin.itemManager.affixes.commands;
+package com.infinitycraft.plugin.chatManager.affixes.commands;
 
-import com.infinitycraft.plugin.itemManager.affixes.GUIs.PositionSelectorGUI;
+import com.infinitycraft.plugin.chatManager.affixes.GUIs.PositionSelectorGUI;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

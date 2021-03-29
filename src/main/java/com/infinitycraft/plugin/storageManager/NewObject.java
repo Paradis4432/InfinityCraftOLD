@@ -11,17 +11,21 @@ public class NewObject {
      * @param prefix Optional variable containing the prefix of the player.
      * @param suffix Optional variable containing the suffix of the player.
      */
-    public static void newPlayer(UUID ID, @Nullable String prefix, @Nullable String suffix) {
+    public static void newPlayer(UUID ID, @Nullable String prefix, @Nullable String suffix, @Nullable String chatColor) {
         if (prefix == null) {
             prefix = "";
         }
         if (suffix == null) {
             suffix = "";
         }
-        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix) VALUES (?, ?, ?)")) {
+        if (chatColor == null) {
+            chatColor = "";
+        }
+        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor) VALUES (?, ?, ?, ?)")) {
             newPlayer.setString(1, String.valueOf(ID));
             newPlayer.setString(2, prefix);
             newPlayer.setString(3, suffix);
+            newPlayer.setString(3, chatColor);
             newPlayer.execute();
         } catch (Exception throwables) {
             throwables.printStackTrace();

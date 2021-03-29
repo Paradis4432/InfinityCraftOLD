@@ -23,8 +23,7 @@ public class SQLDatabase {
                         + "user=ThinkAlex;"
                         + "password=?cHWq99WTYxA$kZPfvBN@9*Bz-+=V$a4$C$cq=hrBFA8F@_FF#xn@Pxek-p#^v-gfCYZUJ=TuKKJ6WurzzwUJ=_RS-a!BmL@7#rP$m?%rFGFV+sbQHxRd6N+T5e?j%PS;"
                         + "encrypt=true;"
-                        + "trustServerCertificate=false;"
-                        + "loginTimeout=30;";
+                        + "trustServerCertificate=false;";
 
         DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
         connection = DriverManager.getConnection(connectionUrl);

@@ -1,6 +1,5 @@
 package com.infinitycraft.plugin.inventoryManager;
 
-import net.kyori.adventure.text.Component;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
@@ -21,7 +20,7 @@ public class CreateInventory {
      */
     public static Inventory createCustomInventory(@Nullable Player owner, Integer rows, String name, ItemStack filler, Map<ItemStack, Integer> Items) {
         // Create Inventory
-        Inventory inv = Bukkit.createInventory(owner, rows * 9 , Component.text(name));
+        Inventory inv = Bukkit.createInventory(owner, rows * 9 , name);
         // Add Filler
         int slots = (rows * 9) - 1;
         int currentSlot = 0;

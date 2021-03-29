@@ -1,7 +1,6 @@
 package com.infinitycraft.plugin.itemManager;
 
 import com.infinitycraft.plugin.chatManager.ColorCoder;
-import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -23,15 +22,15 @@ public class ItemCreator {
         ItemStack item = new ItemStack(material, amount);
         // Setup MetaData
         ItemMeta meta = item.getItemMeta();
-        List<Component> loreList = new ArrayList<>();
+        List<String> loreList = new ArrayList<>();
         // Add Lore
         for (String loreString : lore) {
-            loreList.add(Component.text(ColorCoder.convertColor(loreString)));
+            loreList.add(ColorCoder.convertColor(loreString));
         }
         // Set Display Name
-        meta.displayName(Component.text(displayName));
+        meta.setDisplayName(ColorCoder.convertColor(displayName));
         // Combine Data
-        meta.lore(loreList);
+        meta.setLore(loreList);
         item.setItemMeta(meta);
         // Return finalized item
         return item;

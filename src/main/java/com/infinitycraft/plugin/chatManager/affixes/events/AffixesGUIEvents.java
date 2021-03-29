@@ -1,8 +1,8 @@
-package com.infinitycraft.plugin.itemManager.affixes.events;
+package com.infinitycraft.plugin.chatManager.affixes.events;
 
+import com.infinitycraft.plugin.chatManager.affixes.GUIs.AffixesGUI;
 import com.infinitycraft.plugin.main;
 import com.infinitycraft.plugin.storageManager.EditObject;
-import net.kyori.adventure.text.Component;
 import net.wesjd.anvilgui.AnvilGUI;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -16,26 +16,32 @@ import java.util.Objects;
 public class AffixesGUIEvents implements Listener {
     /**
      * Changes the affixes of the player to their choice.
+     *
      * @param e The event.
      */
     @EventHandler
     public void inventoryEvent(InventoryClickEvent e) {
-        String modification = "";
-        if (e.getView().title().contains(Component.text("Edit your"))) {
-            if (e.getView().title().contains(Component.text("suffix"))) {
-                modification = "suffix";
-            } else if (e.getView().title().contains(Component.text("prefix"))) {
+        String modification;
+        if (e.getInventory() == AffixesGUI.inv) {
+            if (e.getWhoClicked().hasPermission("affixes.position")) {
                 modification = "prefix";
+            } else {
+                modification = "suffix";
             }
-            if (Objects.equals(Objects.requireNonNull(e.getCursor()).getItemMeta().displayName(), Component.text("Bob")) && !modification.equals("")) {
+
+            if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.option1.hashCode()) {
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, "Bob");
-            } else if (Objects.equals(Objects.requireNonNull(e.getCursor()).getItemMeta().displayName(), Component.text("Jeff")) && !modification.equals("")) {
+                e.getWhoClicked().sendMessage("Successfully set your affixes to Bob!");
+                e.getWhoClicked().closeInventory();
+            } else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.option2.hashCode()) {
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, "Jeff");
-            } else if (Objects.equals(Objects.requireNonNull(e.getCursor()).getItemMeta().displayName(), Component.text("Custom")) && !modification.equals("")) {
-                String finalModification = modification;
+                e.getWhoClicked().sendMessage("Successfully set your affixes to Jeff!");
+                e.getWhoClicked().closeInventory();
+            } else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.custom.hashCode()) {
                 new AnvilGUI.Builder()
                         .onComplete((player, text) -> {
-                            EditObject.editPlayer(e.getWhoClicked().getUniqueId(), finalModification, text);
+                            EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, text);
+                            e.getWhoClicked().sendMessage("Successfully set your custom affixes!");
                             return AnvilGUI.Response.close();
                         })
                         .text("Enter your " + modification + ".")
@@ -44,10 +50,7 @@ public class AffixesGUIEvents implements Listener {
                         .plugin(main.getInstance())
                         .open((Player) e.getWhoClicked());
             }
-        }
-        if (!modification.equals("")) {
             e.setCancelled(true);
-            e.getWhoClicked().sendMessage("Your " + modification + " was changed.");
         }
     }
 }
