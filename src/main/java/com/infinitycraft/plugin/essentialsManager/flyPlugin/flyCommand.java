@@ -56,6 +56,9 @@ public class flyCommand extends JavaPlugin {
             }else{
                 sender.sendMessage(ColorCoder.convertColor("&cYou can't use that command"));
             }
+            if(player.hasPermission("test")){
+                
+            }
         }
         return false;
     }
