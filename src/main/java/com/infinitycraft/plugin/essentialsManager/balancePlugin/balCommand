@@ -8,6 +8,4 @@ public class balCommand {
     // bal
     // bal <Player>
     // bal <set/add/remove> <Player> <int>
-
-    //test
 }
