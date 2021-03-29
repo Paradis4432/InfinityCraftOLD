@@ -46,7 +46,7 @@ public final class main extends JavaPlugin {
         // Register Commands
         registerCommands();
         // Send message
-        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "InfinityCraft Enabled");
+        getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "InfinityCraft Plugin Enabled");
     }
 
     /**
@@ -61,7 +61,7 @@ public final class main extends JavaPlugin {
             e.printStackTrace();
         }
         // Send message
-        getServer().getConsoleSender().sendMessage(ChatColor.RED + "InfinityCraft Disabled");
+        getServer().getConsoleSender().sendMessage(ChatColor.RED + "InfinityCraft Plugin Disabled");
     }
 
     /**
