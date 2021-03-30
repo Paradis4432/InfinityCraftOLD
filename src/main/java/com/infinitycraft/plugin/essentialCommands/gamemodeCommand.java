@@ -1,4 +1,4 @@
-package com.infinitycraft.plugin.essentialsManager.gamemodePlugin;
+package com.infinitycraft.plugin.essentialCommands;
 
 public class gamemodeCommand {
 

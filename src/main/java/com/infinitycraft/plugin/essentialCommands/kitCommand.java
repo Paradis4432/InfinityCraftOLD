@@ -1,4 +1,4 @@
-package com.infinitycraft.plugin.essentialsManager.kitPlugin;
+package com.infinitycraft.plugin.essentialCommands;
 
 public class kitCommand {
 

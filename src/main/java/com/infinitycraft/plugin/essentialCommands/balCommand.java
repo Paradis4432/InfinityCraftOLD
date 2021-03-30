@@ -1,4 +1,4 @@
-package com.infinitycraft.plugin.essentialsManager.balancePlugin;
+package com.infinitycraft.plugin.essentialCommands;
 
 public class balCommand {
 
