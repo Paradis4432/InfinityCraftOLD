@@ -42,7 +42,7 @@ public class DatabaseManager {
         // Setup Variables
         // Format: <Table Name, Column Name>, SQL command for creation
         Map<ArrayList<String>, String> columns = new HashMap<>();
-        // Player Table
+        // Player Tables
         ArrayList<String> prefix = new ArrayList<>(Arrays.asList("players", "prefix"));
         columns.put(prefix, "alter table players add prefix TEXT");
         ArrayList<String> suffix = new ArrayList<>(Arrays.asList("players", "suffix"));
