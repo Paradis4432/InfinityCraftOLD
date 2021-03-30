@@ -27,25 +27,31 @@ public class FlyCommand implements CommandExecutor {
         }
         Player player =(Player) sender;
             if (args.length == 0) {
-                if (CheckPermission.checkPerm("essentials.fly", player)) {
-                    if (player.isFlying()) {
-                        player.setAllowFlight(false);
-                        player.setFlying(false);
-                        player.sendMessage(ColorCoder.convertColor("&6Fly disabled"));
-                        return true;
-                    } else {
-                        player.setAllowFlight(true);
-                        player.setFlying(true);
-                        player.sendMessage(ColorCoder.convertColor("&6Fly enabled"));
-                        return true;
+                // if players has flyTime left enable or has perm essentials.fly
+                // enable fly
+
+                // else you cant use that
+                    if (CheckPermission.checkPerm("essentials.fly", player)) {
+                        if (player.isFlying()) {
+                            player.setAllowFlight(false);
+                            player.setFlying(false);
+                            player.sendMessage(ColorCoder.convertColor("&6Fly disabled"));
+                            return true;
+                        } else {
+                            player.setAllowFlight(true);
+                            player.setFlying(true);
+                            player.sendMessage(ColorCoder.convertColor("&6Fly enabled"));
+                            return true;
+                        }
                     }
-                }
             }
+            // fly for other players
             Player target = Bukkit.getServer().getPlayer(args[0]);
             if(target == null){
                 sender.sendMessage("&cPlayer not found");
                 return true;
             }
+            //
             if(CheckPermission.checkPerm("essentials.fly.others", player)){
                 target.setAllowFlight(true);
                 target.setFlying(true);
@@ -53,6 +59,8 @@ public class FlyCommand implements CommandExecutor {
                 player.sendMessage(ColorCoder.convertColor("&6Fly enabled for " + target.getName()));
                 return true;
             }
+
+
         return false;
     }
 }
