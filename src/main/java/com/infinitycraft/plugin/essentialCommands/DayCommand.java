@@ -9,15 +9,15 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class NightTimeCommand implements CommandExecutor {
+public class DayCommand implements CommandExecutor {
     /**
-     * A simple /nighttime command
+     * A simple /daytime command
      * @param sender The sender of the command
      * @param cmd The command
      * @param label The label of the command
      * @param args The commands arguments
      * @return Whether or not the command was used successfully
-     * nighttime will allow certain players with a permission to set time to 1000 ticks
+     * daytime will allow certain players with a permission to set time to 1000 ticks
      */
 
     @Override
@@ -26,12 +26,12 @@ public class NightTimeCommand implements CommandExecutor {
             sender.sendMessage("You can't run this command in the console!");
             return true;
         }
-
         Player player = (Player) sender;
-        if(CheckPermission.checkPerm("essentials.time.night", player)){
+        if(CheckPermission.checkPerm("essentials.time.day", player)){
             World w = player.getWorld();
-            w.setTime(Long.parseLong("13000"));
-            player.sendMessage(ColorCoder.convertColor("&6Night Time"));
+            w.setTime(Long.parseLong("2000"));
+            player.sendMessage(ColorCoder.convertColor("&6The time was successfully set to day."));
+            return true;
         }
         return false;
     }

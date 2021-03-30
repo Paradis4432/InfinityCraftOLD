@@ -85,9 +85,9 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("feed")).setExecutor(new FeedCommand());
         Objects.requireNonNull(this.getCommand("fly")).setExecutor(new FlyCommand());
         Objects.requireNonNull(this.getCommand("heal")).setExecutor(new HealCommand());
-        Objects.requireNonNull(this.getCommand("time")).setExecutor(new TimeSetCommand());
-        Objects.requireNonNull(this.getCommand("daytime")).setExecutor(new DayTimeCommand());
-        Objects.requireNonNull(this.getCommand("nighttime")).setExecutor(new NightTimeCommand());
+        Objects.requireNonNull(this.getCommand("time")).setExecutor(new TimeCommand());
+        Objects.requireNonNull(this.getCommand("day")).setExecutor(new DayCommand());
+        Objects.requireNonNull(this.getCommand("night")).setExecutor(new NightCommand());
     }
 
 

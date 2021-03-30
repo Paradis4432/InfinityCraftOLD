@@ -9,7 +9,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class TimeSetCommand implements CommandExecutor {
+import java.util.Arrays;
+
+public class TimeCommand implements CommandExecutor {
 
     /**
      * A simple /time command
@@ -25,65 +27,71 @@ public class TimeSetCommand implements CommandExecutor {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args){
 
         if(!(sender instanceof Player)){
-            sender.sendMessage("You can't do that on console");
+            sender.sendMessage("You can't do that in the console.");
             return true;
         }
 
         Player player = (Player) sender;
         if(args.length == 0){
             if(CheckPermission.checkPerm("essentials.time", player)){
-                sender.sendMessage("time [set/add] [day/night/dawn/int/ticks]");
+                sender.sendMessage("To use this command, run: time [set/add] [day/night/dawn/ticks]");
                 return true;
             }
-        } else if(args[1] == "set") {
+        } else if(args[0].equals("set")) {
             if(CheckPermission.checkPerm("essentials.time.set", player)){
-                if(args[2] == null){
-                    sender.sendMessage("time [set] [day/night/dawn/int/ticks]");
-                    return true;
-                }else{
-                    try{
-                        World w = player.getWorld();
-                        w.setTime(Long.parseLong(args[2]));
-                    }catch (NumberFormatException e){
-                        sender.sendMessage(ColorCoder.convertColor("&cThere has been an error, Please contact the developers - Essentials-TimeSetCommand"));
-                    }
+                if(args[1] == null){
+                        sender.sendMessage("To use this command, run: time [set] [day/night/dawn/ticks]");
+                        return true;
                 }
-                if(args[2] == "day"){
+                }
+                if(args[1].equals("day")){
                     World w = player.getWorld();
                     w.setTime(Long.parseLong("2000"));
+                    sender.sendMessage("The time was successfully changed.");
                     return true;
                 }
-                if(args[2] == "dawn"){
+                if(args[1].equals("dawn")){
                     World w = player.getWorld();
                     w.setTime(Long.parseLong("23041"));
+                    sender.sendMessage("The time was successfully changed.");
                     return true;
                 }
-                if(args[2] == "night"){
+                if(args[1].equals("night")){
                     World w = player.getWorld();
                     w.setTime(Long.parseLong("13000"));
+                    sender.sendMessage("The time was successfully changed.");
                     return true;
                 }
-
-
+                else{
+                    try{
+                        World w = player.getWorld();
+                        w.setTime(Long.parseLong(args[1]));
+                        sender.sendMessage("The time was successfully changed.");
+                        return true;
+                    }catch (NumberFormatException e){
+                        sender.sendMessage("To use this command, run: time [set] [day/night/dawn/ticks]");
+                        return true;
+                    }
             }
 
-        }else if(args[1] == "add"){
+        }else if(args[0].equals("add")){
             if(CheckPermission.checkPerm("essentials.time.add", player)) {
-                if (args[2] == null) {
-                    sender.sendMessage("time [add] [int/ticks]");
+                if (args[1] == null) {
+                    sender.sendMessage("To use this command, run: time [add] [int/ticks]");
                     return true;
                 } else {
                     try {
                         World w = player.getWorld();
-                        int time = Integer.parseInt(w.getTime() + args[2]);
+                        int time = Integer.parseInt(w.getTime() + args[1]);
+                        sender.sendMessage("The time was successfully changed.");
                         w.setTime(time);
                     } catch (NumberFormatException e) {
-                        sender.sendMessage(ColorCoder.convertColor("&cThere has been an error, Please contact the developers - Essentials-TimeSetCommand"));
+                        sender.sendMessage("To use this command, run: time [set] [day/night/dawn/ticks]");
+                        return true;
                     }
                 }
             }
         }
-
         return false;
     }
 }

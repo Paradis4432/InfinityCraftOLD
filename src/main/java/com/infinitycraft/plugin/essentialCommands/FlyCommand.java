@@ -32,17 +32,16 @@ public class FlyCommand implements CommandExecutor {
 
                 // else you cant use that
                     if (CheckPermission.checkPerm("essentials.fly", player)) {
-                        if (player.isFlying()) {
+                        if (player.getAllowFlight()) {
                             player.setAllowFlight(false);
                             player.setFlying(false);
-                            player.sendMessage(ColorCoder.convertColor("&6Fly disabled"));
-                            return true;
+                            player.sendMessage(ColorCoder.convertColor("&6Flight disabled."));
                         } else {
                             player.setAllowFlight(true);
                             player.setFlying(true);
-                            player.sendMessage(ColorCoder.convertColor("&6Fly enabled"));
-                            return true;
+                            player.sendMessage(ColorCoder.convertColor("&6Flight enabled."));
                         }
+                        return true;
                     }
             }
             // fly for other players
@@ -53,10 +52,18 @@ public class FlyCommand implements CommandExecutor {
             }
             //
             if(CheckPermission.checkPerm("essentials.fly.others", player)){
-                target.setAllowFlight(true);
-                target.setFlying(true);
-                target.sendMessage(ColorCoder.convertColor("&6Fly enabled by " + player.getName()));
-                player.sendMessage(ColorCoder.convertColor("&6Fly enabled for " + target.getName()));
+                if (target.getAllowFlight()) {
+                    target.setAllowFlight(false);
+                    target.setFlying(false);
+                    target.sendMessage(ColorCoder.convertColor("&6Flight disabled by " + player.getName() + "."));
+                    player.sendMessage(ColorCoder.convertColor("&6Flight disabled for " + target.getName() + "."));
+                }
+                else {
+                    target.setAllowFlight(true);
+                    target.setFlying(true);
+                    target.sendMessage(ColorCoder.convertColor("&6Flight enabled by " + player.getName() + "."));
+                    player.sendMessage(ColorCoder.convertColor("&6Flight enabled for " + target.getName() + "."));
+                }
                 return true;
             }
 

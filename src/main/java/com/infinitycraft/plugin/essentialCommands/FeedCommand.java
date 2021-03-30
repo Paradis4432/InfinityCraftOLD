@@ -31,6 +31,7 @@ public class FeedCommand implements CommandExecutor {
         if (args.length == 0) {
             if (CheckPermission.checkPerm("essentials.feed", player)) {
                 player.setFoodLevel(20);
+                player.setSaturation(20);
                 player.sendMessage(ColorCoder.convertColor("&6You have been fed."));
                 return true;
             }
@@ -42,7 +43,8 @@ public class FeedCommand implements CommandExecutor {
         }
         if(CheckPermission.checkPerm("essentials.feed.others", player)){
             target.setFoodLevel(20);
-            target.sendMessage(ColorCoder.convertColor("&6You have fed healed by " + player.getName() + "."));
+            target.setSaturation(20);
+            target.sendMessage(ColorCoder.convertColor("&6You have been fed by " + player.getName() + "."));
             sender.sendMessage(ColorCoder.convertColor("&6You fed " + target.getName() + "."));
             return true;
         }
