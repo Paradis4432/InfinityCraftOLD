@@ -1,4 +1,4 @@
 package com.infinitycraft.plugin.essentialCommands;
 
-public class tpaCommand {
+public class TeleportCommand {
 }

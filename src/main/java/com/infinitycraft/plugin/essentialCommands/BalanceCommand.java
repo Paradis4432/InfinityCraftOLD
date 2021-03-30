@@ -1,6 +1,6 @@
 package com.infinitycraft.plugin.essentialCommands;
 
-public class balCommand {
+public class BalanceCommand {
 
     // BAL OPENS SQL AND CHECKS BAL
     // COMMANDS:

@@ -1,4 +1,4 @@
 package com.infinitycraft.plugin.essentialCommands;
 
-public class timeCommand {
+public class TimeSetCommand {
 }
