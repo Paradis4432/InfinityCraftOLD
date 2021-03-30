@@ -11,12 +11,17 @@ commands:
   chatcolor:
     description: "Changes the color of your chat!"
     aliases: color
-    permission-message: "You don't have the permissions required to use this command!"
-    permission: op
     usage: /chatcolor
   affixes:
     description: "Changes the affixes of your chat"
     aliases: [prefix, suffix]
-    permission-message: "You don't have the permissions required to use this command!"
-    permission: op
     usage: /affixes
+  feed:
+    description: "Feeds you or the player specified"
+    usage: /feed <player>
+  fly:
+    description: "Enables flight for you or the player specified"
+    usage: /fly <player>
+  heal:
+    description: "Heals you or the player specified"
+    usage: /heal <player>

@@ -1,66 +1,58 @@
-package com.infinitycraft.plugin.essentialsManager.flyPlugin;
+package com.infinitycraft.plugin.essentialCommands;
 
 import com.infinitycraft.plugin.chatManager.ColorCoder;
+import com.infinitycraft.plugin.utilities.CheckPermission;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
+import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
+import org.jetbrains.annotations.NotNull;
 
-public class flyCommand extends JavaPlugin {
+public class FlyCommand implements CommandExecutor {
 
-    public void onEnable(){
-        Bukkit.getServer().getLogger().info("Fly Command Enabled");
-    }
-
-    public void onDisable(){
-        Bukkit.getServer().getLogger().info("Fly Command Disabled");
-    }
-
-    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-
+    /**
+     * A simple /fly command
+     * @param sender The sender of the command
+     * @param cmd The command
+     * @param label The label of the command
+     * @param args The commands arguments
+     * @return Whether or not the command was used successfully
+     */
+    @Override
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args){
         if(!(sender instanceof Player)){
-            sender.sendMessage("You cant do that");
+            sender.sendMessage("You can't run this command in the console!");
+            return true;
         }
-
         Player player =(Player) sender;
-
-        if(cmd.getName().equalsIgnoreCase("fly")) {
             if (args.length == 0) {
-                if (player.hasPermission("essentials.fly")) {
+                if (CheckPermission.checkPerm("essentials.fly", player)) {
                     if (player.isFlying()) {
                         player.setAllowFlight(false);
                         player.setFlying(false);
                         player.sendMessage(ColorCoder.convertColor("&6Fly disabled"));
+                        return true;
                     } else {
                         player.setAllowFlight(true);
                         player.setFlying(true);
                         player.sendMessage(ColorCoder.convertColor("&6Fly enabled"));
+                        return true;
                     }
-                } else {
-                    player.sendMessage(ColorCoder.convertColor("&cYou can't use that command"));
                 }
             }
             Player target = Bukkit.getServer().getPlayer(args[0]);
-
             if(target == null){
                 sender.sendMessage("&cPlayer not found");
                 return true;
             }
-            if(sender.hasPermission("essentials.fly.others")){
+            if(CheckPermission.checkPerm("essentials.fly.others", player)){
                 target.setAllowFlight(true);
                 target.setFlying(true);
                 target.sendMessage(ColorCoder.convertColor("&6Fly enabled by " + player.getName()));
                 player.sendMessage(ColorCoder.convertColor("&6Fly enabled for " + target.getName()));
-            }else{
-                sender.sendMessage(ColorCoder.convertColor("&cYou can't use that command"));
+                return true;
             }
-            if(player.hasPermission("test")){
-                
-            }
-        }
         return false;
     }
-    // ADD SQL CHECK, RIGHT CLICK VOUNCHER, AND LAST ARG INT TO ADD TIME LEFT TO FlyTimeLeft
 }

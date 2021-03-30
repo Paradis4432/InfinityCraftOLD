@@ -1,6 +1,7 @@
 package com.infinitycraft.plugin.chatManager.affixes.events;
 
 import com.infinitycraft.plugin.chatManager.affixes.GUIs.AffixesGUI;
+import com.infinitycraft.plugin.utilities.CheckPermission;
 import com.infinitycraft.plugin.main;
 import com.infinitycraft.plugin.storageManager.EditObject;
 import net.wesjd.anvilgui.AnvilGUI;
@@ -37,7 +38,7 @@ public class AffixesGUIEvents implements Listener {
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, "Jeff");
                 e.getWhoClicked().sendMessage("Successfully set your affixes to Jeff!");
                 e.getWhoClicked().closeInventory();
-            } else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.custom.hashCode()) {
+            } else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.custom.hashCode()  && CheckPermission.checkPerm("chat.affixes.custom", (Player) e.getWhoClicked())) {
                 new AnvilGUI.Builder()
                         .onComplete((player, text) -> {
                             EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, text);

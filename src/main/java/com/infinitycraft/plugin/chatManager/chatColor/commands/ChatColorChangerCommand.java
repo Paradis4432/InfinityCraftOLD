@@ -1,6 +1,7 @@
 package com.infinitycraft.plugin.chatManager.chatColor.commands;
 
 import com.infinitycraft.plugin.chatManager.chatColor.GUIs.ChatColorChanger;
+import com.infinitycraft.plugin.utilities.CheckPermission;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,7 +25,9 @@ public class ChatColorChangerCommand implements CommandExecutor {
             sender.sendMessage("You can't run this command in the console!");
             return true;
         }
-        ChatColorChanger.openGUI((Player) sender);
+        if (CheckPermission.checkPerm("chat.color", (Player) sender)) {
+            ChatColorChanger.openGUI((Player) sender);
+        }
         return true;
     }
 
