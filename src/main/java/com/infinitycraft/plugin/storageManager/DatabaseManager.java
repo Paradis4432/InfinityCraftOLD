@@ -49,6 +49,8 @@ public class DatabaseManager {
         columns.put(suffix, "alter table players add suffix TEXT");
         ArrayList<String> chatColor = new ArrayList<>(Arrays.asList("players", "chatColor"));
         columns.put(chatColor, "alter table players add chatColor TEXT");
+        ArrayList<String> balance = new ArrayList<>(Arrays.asList("players", "balance"));
+        columns.put(balance, "alter table players add balance INT");
         // Blocks Table
 
         // Items Table
