@@ -25,3 +25,12 @@ commands:
   heal:
     description: "Heals you or the player specified"
     usage: /heal <player>
+  time:
+    description: "Sets the time to day, night or a tick. Adds to the time X ticks"
+    usage: /time [set/add] [day/night/dawn/int/ticks]
+  daytime:
+    description: :"Allows players an easy acces to day time"
+    usage: /daytime
+  nighttime:
+    description: :"Allows players an easy acces to night time"
+    usage: /nighttime

@@ -6,9 +6,7 @@ import com.infinitycraft.plugin.chatManager.chatColor.events.ChatColorChangerEve
 import com.infinitycraft.plugin.chatManager.affixes.commands.AffixesCommand;
 import com.infinitycraft.plugin.chatManager.affixes.events.AffixesGUIEvents;
 import com.infinitycraft.plugin.chatManager.affixes.events.PositionSelectorEvents;
-import com.infinitycraft.plugin.essentialCommands.FeedCommand;
-import com.infinitycraft.plugin.essentialCommands.FlyCommand;
-import com.infinitycraft.plugin.essentialCommands.HealCommand;
+import com.infinitycraft.plugin.essentialCommands.*;
 import com.infinitycraft.plugin.storageManager.DatabaseManager;
 import com.infinitycraft.plugin.storageManager.StorageAutomation;
 import org.bukkit.ChatColor;
@@ -87,6 +85,9 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("feed")).setExecutor(new FeedCommand());
         Objects.requireNonNull(this.getCommand("fly")).setExecutor(new FlyCommand());
         Objects.requireNonNull(this.getCommand("heal")).setExecutor(new HealCommand());
+        Objects.requireNonNull(this.getCommand("time")).setExecutor(new TimeSetCommand());
+        Objects.requireNonNull(this.getCommand("daytime")).setExecutor(new DayTimeCommand());
+        Objects.requireNonNull(this.getCommand("nighttime")).setExecutor(new NightTimeCommand());
     }
 
 
