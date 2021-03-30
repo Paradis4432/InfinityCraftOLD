@@ -51,6 +51,8 @@ public class DatabaseManager {
         columns.put(chatColor, "alter table players add chatColor TEXT");
         ArrayList<String> balance = new ArrayList<>(Arrays.asList("players", "balance"));
         columns.put(balance, "alter table players add balance INT");
+        ArrayList<String> flyTime = new ArrayList<>(Arrays.asList("players", "flyTime"));
+        columns.put(flyTime, "alter table players add flyTime INT");
         // Blocks Table
 
         // Items Table

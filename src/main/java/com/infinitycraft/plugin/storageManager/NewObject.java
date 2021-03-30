@@ -11,7 +11,7 @@ public class NewObject {
      * @param prefix Optional variable containing the prefix of the player.
      * @param suffix Optional variable containing the suffix of the player.
      */
-    public static void newPlayer(UUID ID, @Nullable String prefix, @Nullable String suffix, @Nullable String chatColor, @Nullable Integer balance) {
+    public static void newPlayer(UUID ID, @Nullable String prefix, @Nullable String suffix, @Nullable String chatColor, @Nullable Integer balance,  @Nullable Integer flyTime) {
         if (prefix == null) {
             prefix = "";
         }
@@ -24,12 +24,16 @@ public class NewObject {
         if (balance == null) {
             balance = 0;
         }
-        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor, balance) VALUES (?, ?, ?, ?, ?)")) {
+        if (flyTime == null) {
+            flyTime = 0;
+        }
+        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor, balance, flyTime) VALUES ( ?, ?, ?, ?, ?, ?)")) {
             newPlayer.setString(1, String.valueOf(ID));
             newPlayer.setString(2, prefix);
             newPlayer.setString(3, suffix);
             newPlayer.setString(3, chatColor);
             newPlayer.setInt(4, balance);
+            newPlayer.setInt(5,flyTime);
             newPlayer.execute();
         } catch (Exception throwables) {
             throwables.printStackTrace();
