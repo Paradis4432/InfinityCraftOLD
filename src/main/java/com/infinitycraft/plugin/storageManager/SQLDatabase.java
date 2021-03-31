@@ -9,7 +9,6 @@ public class SQLDatabase {
     /**
      * Setup all variables
      */
-    public static String connectionUrl;
     public static Connection connection;
     public static Statement statement;
 
@@ -17,16 +16,8 @@ public class SQLDatabase {
      * Connect to database and run tests
      */
     public static void connect() throws Exception {
-        connectionUrl =
-                "jdbc:sqlserver://infinitycraft.database.windows.net:1433;database=main;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;"
-                        + "database=main;"
-                        + "user=ThinkAlex;"
-                        + "password=?cHWq99WTYxA$kZPfvBN@9*Bz-+=V$a4$C$cq=hrBFA8F@_FF#xn@Pxek-p#^v-gfCYZUJ=TuKKJ6WurzzwUJ=_RS-a!BmL@7#rP$m?%rFGFV+sbQHxRd6N+T5e?j%PS;"
-                        + "encrypt=true;"
-                        + "trustServerCertificate=false;";
-
-        DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
-        connection = DriverManager.getConnection(connectionUrl);
+        DriverManager.registerDriver(new org.mariadb.jdbc.Driver());
+        connection = DriverManager.getConnection("jdbc:mysql://192.168.68.124:3306/main", "ThinkAlex", "aHD12006");
         statement = connection.createStatement();
     }
 

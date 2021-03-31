@@ -90,5 +90,12 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("night")).setExecutor(new NightCommand());
     }
 
+    /**
+     * Schedule all the events!
+     */
+    public void registerSchedgules() {
+
+    }
+
 
 }
