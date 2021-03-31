@@ -88,6 +88,7 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("time")).setExecutor(new TimeCommand());
         Objects.requireNonNull(this.getCommand("day")).setExecutor(new DayCommand());
         Objects.requireNonNull(this.getCommand("night")).setExecutor(new NightCommand());
+        Objects.requireNonNull(this.getCommand("invsee")).setExecutor(new InvseeCommand());
     }
 
     /**

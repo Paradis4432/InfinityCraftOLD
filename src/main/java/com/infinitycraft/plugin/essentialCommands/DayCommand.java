@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class DayCommand implements CommandExecutor {
     /**
-     * A simple /daytime command
+     * A simple /day command
      * @param sender The sender of the command
      * @param cmd The command
      * @param label The label of the command

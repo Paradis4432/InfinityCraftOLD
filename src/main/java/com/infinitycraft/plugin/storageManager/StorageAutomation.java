@@ -10,7 +10,7 @@ public class StorageAutomation implements Listener {
      */
     @EventHandler
     public void onNewPlayerJoin(PlayerJoinEvent e) {
-        if (!e.getPlayer().hasPlayedBefore()) {
+        if (!(e.getPlayer().hasPlayedBefore())) {
             NewObject.newPlayer(e.getPlayer().getUniqueId(), null, null, null, null, null);
         }
     }
