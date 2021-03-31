@@ -22,11 +22,11 @@ public class DatabaseManager {
         // Format: Table Name, SQL Command for creation
         Map<String, String> tables = new HashMap<>();
         // Player Table
-        tables.put("players", "create table players ( UUID UNIQUEIDENTIFIER not null constraint players_pk primary key nonclustered )");
+        tables.put("players", "create table players ( UUID binary(36) not null primary key )");
         // Blocks Table
-        tables.put("blocks", "create table blocks ( ID int identity constraint blocks_pk primary key nonclustered )");
+        tables.put("blocks", "create table blocks ( ID INT not null primary key )");
         // Items Table
-        tables.put("items", "create table items ( ID int identity constraint items_pk primary key nonclustered )");
+        tables.put("items", "create table items ( ID INT not null primary key )");
         // Settings Table
         tables.put("settings", "create table settings ( ID TEXT not null, Value TEXT not null )");
         // Return Map
