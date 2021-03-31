@@ -97,7 +97,7 @@ public class ChatColorChangerEvent implements Listener {
                 e.getWhoClicked().closeInventory();
                 e.getWhoClicked().sendMessage("Successfully set your chat color to black!");
             }
+            e.setCancelled(true);
         }
-    e.setCancelled(true);
     }
 }

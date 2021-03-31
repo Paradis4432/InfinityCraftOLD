@@ -19,8 +19,8 @@ public class BasicChatEvent implements Listener {
             prefix = "[" + prefix + "] ";
         }
         if (!suffix.equals("")) {
-            suffix = " [" + suffix + "] ";
+            suffix = " [" + suffix + "]";
         }
-        e.setFormat(prefix + "<" + e.getPlayer().getName() + ">" + suffix + ": " + ColorCoder.convertColor(chatColor + message));
+        e.setFormat(prefix + e.getPlayer().getName() + suffix + ": " + ColorCoder.convertColor(chatColor + message));
     }
 }
