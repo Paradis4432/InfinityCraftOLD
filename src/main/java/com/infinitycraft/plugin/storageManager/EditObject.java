@@ -11,9 +11,9 @@ public class EditObject {
      * @param value The value to set the setting to.
      */
     public static void editPlayer(UUID ID, String setting, Object value) {
-        try (PreparedStatement editPlayer = SQLDatabase.connection.prepareStatement("UPDATE players SET " + setting + " = ? WHERE UUID = ?")) {
+        try (PreparedStatement editPlayer = SQLDatabase.connection.prepareStatement("UPDATE players SET " + setting + " = ? WHERE UUID = UNHEX(?)")) {
             editPlayer.setObject(1, value);
-            editPlayer.setString(2, String.valueOf(ID));
+            editPlayer.setString(2, String.valueOf(ID).replaceAll("-", ""));
             editPlayer.execute();
         } catch (Exception throwables) {
             throwables.printStackTrace();

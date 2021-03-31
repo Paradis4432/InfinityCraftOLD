@@ -31,12 +31,12 @@ public class AffixesGUIEvents implements Listener {
             }
 
             if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.option1.hashCode()) {
-                EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, "Bob");
-                e.getWhoClicked().sendMessage("Successfully set your affixes to Bob!");
+                EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, "EPIC");
+                e.getWhoClicked().sendMessage("Successfully set your affixes to EPIC!");
                 e.getWhoClicked().closeInventory();
             } else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.option2.hashCode()) {
-                EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, "Jeff");
-                e.getWhoClicked().sendMessage("Successfully set your affixes to Jeff!");
+                EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, "");
+                e.getWhoClicked().sendMessage("Successfully reset your affixes!");
                 e.getWhoClicked().closeInventory();
             } else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.custom.hashCode()  && CheckPermission.checkPerm("chat.affixes.custom", (Player) e.getWhoClicked())) {
                 new AnvilGUI.Builder()

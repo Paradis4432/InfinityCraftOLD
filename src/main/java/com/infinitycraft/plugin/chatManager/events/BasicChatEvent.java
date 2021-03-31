@@ -15,6 +15,12 @@ public class BasicChatEvent implements Listener {
         String prefix = ChatColor.stripColor(String.valueOf(GetObject.getPlayer(e.getPlayer().getUniqueId(), "prefix")));
         String suffix = ChatColor.stripColor(String.valueOf(GetObject.getPlayer(e.getPlayer().getUniqueId(), "suffix")));
         String chatColor = String.valueOf(GetObject.getPlayer(e.getPlayer().getUniqueId(), "chatColor"));
-        e.setFormat("[" + prefix + "] <" + e.getPlayer().getName() + "> [" + suffix + "]: " + ColorCoder.convertColor(chatColor + message));
+        if (!prefix.equals("")) {
+            prefix = "[" + prefix + "] ";
+        }
+        if (!suffix.equals("")) {
+            suffix = " [" + suffix + "] ";
+        }
+        e.setFormat(prefix + "<" + e.getPlayer().getName() + ">" + suffix + ": " + ColorCoder.convertColor(chatColor + message));
     }
 }

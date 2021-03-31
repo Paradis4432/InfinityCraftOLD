@@ -12,8 +12,8 @@ public class GetObject {
      * @return The setting in its original form (string, int, object, bool, etc.)
      */
     public static Object getPlayer(UUID ID, String setting) {
-        try (PreparedStatement getPlayer = SQLDatabase.connection.prepareStatement("SELECT " + setting + " FROM players WHERE UUID = ?")) {
-            getPlayer.setString(1, String.valueOf(ID));
+        try (PreparedStatement getPlayer = SQLDatabase.connection.prepareStatement("SELECT " + setting + " FROM players WHERE UUID = UNHEX(?)")) {
+            getPlayer.setString(1, String.valueOf(ID).replaceAll("-", ""));
             ResultSet rs = getPlayer.executeQuery();if (rs.next()) {
                 return rs.getObject(1);
             }

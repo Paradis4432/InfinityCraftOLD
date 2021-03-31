@@ -22,13 +22,14 @@ public class DatabaseManager {
         // Format: Table Name, SQL Command for creation
         Map<String, String> tables = new HashMap<>();
         // Player Table
-        tables.put("players", "create table players ( UUID binary(36) not null primary key )");
+        tables.put("players", "create table players (UUID Binary(16) not null, constraint players_pk primary key (UUID) );");
         // Blocks Table
-        tables.put("blocks", "create table blocks ( ID INT not null primary key )");
+        tables.put("blocks", "create table blocks ( ID int auto_increment, constraint blocks_pk primary key (ID) );");
         // Items Table
-        tables.put("items", "create table items ( ID INT not null primary key )");
+        tables.put("items", "create table items ( ID int auto_increment, constraint blocks_pk primary key (ID) );");
         // Settings Table
-        tables.put("settings", "create table settings ( ID TEXT not null, Value TEXT not null )");
+        tables.put("settings", "create table settings ( ID TEXT not null )");
+        //
         // Return Map
         return tables;
     }
@@ -54,11 +55,14 @@ public class DatabaseManager {
         ArrayList<String> flyTime = new ArrayList<>(Arrays.asList("players", "flyTime"));
         columns.put(flyTime, "alter table players add flyTime INT");
         // Blocks Table
-
+        ArrayList<String> blockPerm = new ArrayList<>(Arrays.asList("blocks", "permission"));
+        columns.put(blockPerm, "alter table blocks add permission TEXT");
         // Items Table
-
+        ArrayList<String> itemPerm = new ArrayList<>(Arrays.asList("items", "permission"));
+        columns.put(itemPerm, "alter table items add permission TEXT");
         // Settings Table
-
+        ArrayList<String> value = new ArrayList<>(Arrays.asList("settings", "value"));
+        columns.put(value, "alter table settings add value TEXT");
         // Return Map
         return columns;
     }
