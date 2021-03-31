@@ -34,3 +34,6 @@ commands:
   night:
     description: "Sets the time to night"
     usage: /night
+  invsee:
+    description: "Opens a player inventory"
+    usage: /invsee

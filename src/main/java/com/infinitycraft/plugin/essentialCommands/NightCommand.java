@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class NightCommand implements CommandExecutor {
     /**
-     * A simple /nighttime command
+     * A simple /night command
      * @param sender The sender of the command
      * @param cmd The command
      * @param label The label of the command
