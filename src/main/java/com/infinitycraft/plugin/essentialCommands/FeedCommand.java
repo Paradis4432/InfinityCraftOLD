@@ -1,8 +1,8 @@
 package com.infinitycraft.plugin.essentialCommands;
 
-import com.infinitycraft.plugin.chatManager.ColorCoder;
 import com.infinitycraft.plugin.utilities.CheckPermission;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,20 +32,20 @@ public class FeedCommand implements CommandExecutor {
             if (CheckPermission.checkPerm("essentials.feed", player)) {
                 player.setFoodLevel(20);
                 player.setSaturation(20);
-                player.sendMessage(ColorCoder.convertColor("&6You have been fed."));
+                player.sendMessage(ChatColor.DARK_GREEN + "You have been fed.");
                 return true;
             }
         }
         Player target = Bukkit.getServer().getPlayer(args[0]);
         if (target == null) {
-            sender.sendMessage(ColorCoder.convertColor("&cCould not find player!"));
+            player.sendMessage(ChatColor.DARK_RED + "Could not find player!");
             return true;
         }
         if(CheckPermission.checkPerm("essentials.feed.others", player)){
             target.setFoodLevel(20);
             target.setSaturation(20);
-            target.sendMessage(ColorCoder.convertColor("&6You have been fed by " + player.getName() + "."));
-            sender.sendMessage(ColorCoder.convertColor("&6You fed " + target.getName() + "."));
+            target.sendMessage(ChatColor.DARK_GREEN + "You have been fed by " + player.getName() + ".");
+            player.sendMessage(ChatColor.DARK_GREEN + "You fed " + target.getName() + ".");
             return true;
         }
         return false;

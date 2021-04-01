@@ -46,6 +46,8 @@ public class DatabaseManager {
         // Player Tables
         ArrayList<String> prefix = new ArrayList<>(Arrays.asList("players", "prefix"));
         columns.put(prefix, "alter table players add prefix TEXT");
+        ArrayList<String> name = new ArrayList<>(Arrays.asList("players", "name"));
+        columns.put(name, "alter table players add name TEXT");
         ArrayList<String> suffix = new ArrayList<>(Arrays.asList("players", "suffix"));
         columns.put(suffix, "alter table players add suffix TEXT");
         ArrayList<String> chatColor = new ArrayList<>(Arrays.asList("players", "chatColor"));

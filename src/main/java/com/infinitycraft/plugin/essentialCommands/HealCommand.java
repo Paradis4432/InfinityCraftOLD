@@ -1,8 +1,8 @@
 package com.infinitycraft.plugin.essentialCommands;
 
-import com.infinitycraft.plugin.chatManager.ColorCoder;
 import com.infinitycraft.plugin.utilities.CheckPermission;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.attribute.Attribute;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -32,19 +32,19 @@ public class HealCommand implements CommandExecutor {
             if (args.length == 0) {
                 if (CheckPermission.checkPerm("essentials.heal", player)) {
                     player.setHealth(Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue());
-                    player.sendMessage(ColorCoder.convertColor("&6You have been healed."));
+                    player.sendMessage(ChatColor.DARK_GREEN + "You have been healed.");
                     return true;
                 }
             }
             Player target = Bukkit.getServer().getPlayer(args[0]);
             if (target == null) {
-                sender.sendMessage(ColorCoder.convertColor("&cCould not find player!"));
+                player.sendMessage(ChatColor.DARK_RED + "Could not find player!");
                 return true;
             }
             if (CheckPermission.checkPerm("essentials.heal.others", player)) {
                 target.setHealth(Objects.requireNonNull(player.getAttribute(Attribute.GENERIC_MAX_HEALTH)).getValue());
-                target.sendMessage(ColorCoder.convertColor("&6You have been healed by " + player.getName() + "."));
-                sender.sendMessage(ColorCoder.convertColor("&6You healed " + target.getName() + "."));
+                target.sendMessage(ChatColor.DARK_GREEN + "You have been healed by " + player.getName() + ".");
+                player.sendMessage(ChatColor.DARK_GREEN + "You healed " + target.getName() + ".");
                 return true;
             }
         return false;

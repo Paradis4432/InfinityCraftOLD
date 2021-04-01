@@ -1,15 +1,13 @@
 package com.infinitycraft.plugin.essentialCommands;
 
-import com.infinitycraft.plugin.chatManager.ColorCoder;
 import com.infinitycraft.plugin.utilities.CheckPermission;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Arrays;
 
 public class TimeCommand implements CommandExecutor {
 
@@ -34,42 +32,42 @@ public class TimeCommand implements CommandExecutor {
         Player player = (Player) sender;
         if(args.length == 0){
             if(CheckPermission.checkPerm("essentials.time", player)){
-                sender.sendMessage("To use this command, run: time [set/add] [day/night/dawn/ticks]");
+                player.sendMessage(ChatColor.DARK_RED + "To use this command, run: time [set/add] [day/night/dawn/ticks]");
                 return true;
             }
         } else if(args[0].equals("set")) {
             if(CheckPermission.checkPerm("essentials.time.set", player)){
                 if(args[1] == null){
-                        sender.sendMessage("To use this command, run: time [set] [day/night/dawn/ticks]");
+                        player.sendMessage(ChatColor.DARK_RED + "To use this command, run: time [set] [day/night/dawn/ticks]");
                         return true;
                 }
                 }
                 if(args[1].equals("day")){
                     World w = player.getWorld();
                     w.setTime(Long.parseLong("2000"));
-                    sender.sendMessage("The time was successfully changed.");
+                    player.sendMessage(ChatColor.DARK_GREEN + "The time was successfully changed.");
                     return true;
                 }
                 if(args[1].equals("dawn")){
                     World w = player.getWorld();
                     w.setTime(Long.parseLong("23041"));
-                    sender.sendMessage("The time was successfully changed.");
+                    player.sendMessage(ChatColor.DARK_GREEN + "The time was successfully changed.");
                     return true;
                 }
                 if(args[1].equals("night")){
                     World w = player.getWorld();
                     w.setTime(Long.parseLong("13000"));
-                    sender.sendMessage("The time was successfully changed.");
+                    player.sendMessage(ChatColor.DARK_GREEN + "The time was successfully changed.");
                     return true;
                 }
                 else{
                     try{
                         World w = player.getWorld();
                         w.setTime(Long.parseLong(args[1]));
-                        sender.sendMessage("The time was successfully changed.");
+                        player.sendMessage(ChatColor.DARK_GREEN + "The time was successfully changed.");
                         return true;
                     }catch (NumberFormatException e){
-                        sender.sendMessage("To use this command, run: time [set] [day/night/dawn/ticks]");
+                        player.sendMessage(ChatColor.DARK_RED + "To use this command, run: time [set] [day/night/dawn/ticks]");
                         return true;
                     }
             }
@@ -77,16 +75,16 @@ public class TimeCommand implements CommandExecutor {
         }else if(args[0].equals("add")){
             if(CheckPermission.checkPerm("essentials.time.add", player)) {
                 if (args[1] == null) {
-                    sender.sendMessage("To use this command, run: time [add] [int/ticks]");
+                    player.sendMessage(ChatColor.DARK_RED + "To use this command, run: time [add] [int/ticks]");
                     return true;
                 } else {
                     try {
                         World w = player.getWorld();
                         int time = Integer.parseInt(w.getTime() + args[1]);
-                        sender.sendMessage("The time was successfully changed.");
+                        player.sendMessage(ChatColor.DARK_GREEN + "The time was successfully changed.");
                         w.setTime(time);
                     } catch (NumberFormatException e) {
-                        sender.sendMessage("To use this command, run: time [set] [day/night/dawn/ticks]");
+                        player.sendMessage(ChatColor.DARK_RED + "To use this command, run: time [set] [day/night/dawn/ticks]");
                         return true;
                     }
                 }

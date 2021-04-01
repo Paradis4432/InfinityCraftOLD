@@ -30,13 +30,14 @@ public class NewObject {
         if (flyTime == null) {
             flyTime = 0;
         }
-        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor, balance, flyTime) VALUES ( UNHEX(?), ?, ?, ?, ?, ?)")) {
+        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor, balance, flyTime, name) VALUES ( UNHEX(?), ?, ?, ?, ?, ?, ?)")) {
             newPlayer.setString(1, String.valueOf(ID).replaceAll("-", ""));
             newPlayer.setString(2, prefix);
             newPlayer.setString(3, suffix);
             newPlayer.setString(4, chatColor);
             newPlayer.setInt(5 , balance);
             newPlayer.setInt(6 ,flyTime);
+            newPlayer.setString(7, "");
             newPlayer.execute();
         } catch (Exception throwables) {
             throwables.printStackTrace();

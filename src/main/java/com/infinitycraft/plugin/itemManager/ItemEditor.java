@@ -1,6 +1,6 @@
 package com.infinitycraft.plugin.itemManager;
 
-import com.infinitycraft.plugin.chatManager.ColorCoder;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -28,7 +28,7 @@ public class ItemEditor {
         if (displayName != null) { meta.setDisplayName(displayName); }
         if (lore != null) {
             for (String loreString : lore) {
-                loreList.add(ColorCoder.convertColor(loreString));
+                loreList.add(ChatColor.translateAlternateColorCodes('&', loreString));
             }
         }
         // Combine Data

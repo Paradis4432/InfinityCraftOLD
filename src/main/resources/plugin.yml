@@ -35,5 +35,17 @@ commands:
     description: "Sets the time to night"
     usage: /night
   invsee:
-    description: "Opens a player inventory"
-    usage: /invsee
+    description: "Opens a player's inventory"
+    usage: /invsee <player>
+  balance:
+    description: "Checks a player's balance"
+    usage: /balance <player>
+    aliases: [bal]
+  editbalance:
+    description: "Edits a player's balance"
+    usage: /editbalance <player>
+    aliases: [ editbal ]
+  baltop:
+    description: "Check the players with the most money!"
+    usage: /baltop
+    aliases: [ topbal, balancetop, topbalance ]

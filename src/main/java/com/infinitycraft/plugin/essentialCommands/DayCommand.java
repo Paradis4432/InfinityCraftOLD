@@ -1,7 +1,7 @@
 package com.infinitycraft.plugin.essentialCommands;
 
-import com.infinitycraft.plugin.chatManager.ColorCoder;
 import com.infinitycraft.plugin.utilities.CheckPermission;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -30,7 +30,7 @@ public class DayCommand implements CommandExecutor {
         if(CheckPermission.checkPerm("essentials.time.day", player)){
             World w = player.getWorld();
             w.setTime(Long.parseLong("2000"));
-            player.sendMessage(ColorCoder.convertColor("&6The time was successfully set to day."));
+            player.sendMessage(ChatColor.DARK_GREEN + "The time was successfully set to day.");
             return true;
         }
         return false;

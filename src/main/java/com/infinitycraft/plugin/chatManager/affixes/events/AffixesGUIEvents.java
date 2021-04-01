@@ -32,17 +32,17 @@ public class AffixesGUIEvents implements Listener {
 
             if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.option1.hashCode()) {
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, "EPIC");
-                e.getWhoClicked().sendMessage("Successfully set your affixes to EPIC!");
+                e.getWhoClicked().sendMessage("&2Successfully set your affixes to EPIC!");
                 e.getWhoClicked().closeInventory();
             } else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.option2.hashCode()) {
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, "");
-                e.getWhoClicked().sendMessage("Successfully reset your affixes!");
+                e.getWhoClicked().sendMessage("&2Successfully reset your affixes!");
                 e.getWhoClicked().closeInventory();
             } else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == AffixesGUI.custom.hashCode()  && CheckPermission.checkPerm("chat.affixes.custom", (Player) e.getWhoClicked())) {
                 new AnvilGUI.Builder()
                         .onComplete((player, text) -> {
                             EditObject.editPlayer(e.getWhoClicked().getUniqueId(), modification, text);
-                            e.getWhoClicked().sendMessage("Successfully set your custom affixes!");
+                            e.getWhoClicked().sendMessage("&2Successfully set your custom affixes!");
                             return AnvilGUI.Response.close();
                         })
                         .text("Enter your " + modification + ".")

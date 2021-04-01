@@ -3,6 +3,7 @@ package com.infinitycraft.plugin.chatManager.chatColor.events;
 import com.infinitycraft.plugin.chatManager.chatColor.GUIs.ChatColorChanger;
 import com.infinitycraft.plugin.storageManager.EditObject;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -20,82 +21,82 @@ public class ChatColorChangerEvent implements Listener {
             if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.darkRed.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&4");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to dark red!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to dark red!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.red.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&c");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to red!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to red!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.gold.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&6");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to gold!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to gold!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.yellow.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&e");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to yellow!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to yellow!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.darkGreen.hashCode()){
-                EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&2");
+                EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", ChatColor.DARK_GREEN + "");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to dark green!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to dark green!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.green.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&a");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to green!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to green!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.aqua.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&7");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to aqua!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to aqua!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.darkAqua.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&3");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to dark aqua!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to dark aqua!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.darkBlue.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&1");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to dark blue!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to dark blue!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.blue.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&9");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to blue!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to blue!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.lightPurple.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&d");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to light purple!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to light purple!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.darkPurple.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&5");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to dark purple!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to dark purple!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.white.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&f");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to white!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to white!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.gray.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&7");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to gray!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to gray!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.darkGray.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&8");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to dark gray!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to dark gray!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.black.hashCode()){
                 EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&0");
                 e.getWhoClicked().closeInventory();
-                e.getWhoClicked().sendMessage("Successfully set your chat color to black!");
+                e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to black!");
             }
             e.setCancelled(true);
         }

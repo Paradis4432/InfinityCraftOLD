@@ -1,8 +1,8 @@
 package com.infinitycraft.plugin.essentialCommands;
 
-import com.infinitycraft.plugin.chatManager.ColorCoder;
 import com.infinitycraft.plugin.utilities.CheckPermission;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -35,11 +35,11 @@ public class FlyCommand implements CommandExecutor {
                         if (player.getAllowFlight()) {
                             player.setAllowFlight(false);
                             player.setFlying(false);
-                            player.sendMessage(ColorCoder.convertColor("&6Flight disabled."));
+                            player.sendMessage(ChatColor.DARK_GREEN + "Flight disabled.");
                         } else {
                             player.setAllowFlight(true);
                             player.setFlying(true);
-                            player.sendMessage(ColorCoder.convertColor("&6Flight enabled."));
+                            player.sendMessage(ChatColor.DARK_GREEN + "Flight enabled.");
                         }
                         return true;
                     }
@@ -47,7 +47,7 @@ public class FlyCommand implements CommandExecutor {
             // fly for other players
             Player target = Bukkit.getServer().getPlayer(args[0]);
             if(target == null){
-                sender.sendMessage("&cPlayer not found");
+                player.sendMessage(ChatColor.DARK_RED + "Player not found");
                 return true;
             }
             //
@@ -55,14 +55,14 @@ public class FlyCommand implements CommandExecutor {
                 if (target.getAllowFlight()) {
                     target.setAllowFlight(false);
                     target.setFlying(false);
-                    target.sendMessage(ColorCoder.convertColor("&6Flight disabled by " + player.getName() + "."));
-                    player.sendMessage(ColorCoder.convertColor("&6Flight disabled for " + target.getName() + "."));
+                    target.sendMessage(ChatColor.DARK_GREEN + "Flight disabled by " + player.getName() + ".");
+                    player.sendMessage(ChatColor.DARK_GREEN + "Flight disabled for " + target.getName() + ".");
                 }
                 else {
                     target.setAllowFlight(true);
                     target.setFlying(true);
-                    target.sendMessage(ColorCoder.convertColor("&6Flight enabled by " + player.getName() + "."));
-                    player.sendMessage(ColorCoder.convertColor("&6Flight enabled for " + target.getName() + "."));
+                    target.sendMessage(ChatColor.DARK_GREEN + "Flight enabled by " + player.getName() + ".");
+                    player.sendMessage(ChatColor.DARK_GREEN + "Flight enabled for " + target.getName() + ".");
                 }
                 return true;
             }

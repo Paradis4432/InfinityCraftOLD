@@ -1,6 +1,6 @@
 package com.infinitycraft.plugin.utilities;
 
-import com.infinitycraft.plugin.chatManager.ColorCoder;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 public class CheckPermission {
@@ -9,7 +9,7 @@ public class CheckPermission {
             return true;
         }
         else {
-            player.sendMessage(ColorCoder.convertColor("&4You don't have the permissions required to do this!"));
+            player.sendMessage(ChatColor.DARK_RED + "You don't have the permissions required to do this!");
             player.closeInventory();
             return false;
         }

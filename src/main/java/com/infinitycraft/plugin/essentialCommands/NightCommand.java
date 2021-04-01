@@ -1,7 +1,7 @@
 package com.infinitycraft.plugin.essentialCommands;
 
-import com.infinitycraft.plugin.chatManager.ColorCoder;
 import com.infinitycraft.plugin.utilities.CheckPermission;
+import org.bukkit.ChatColor;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -31,7 +31,7 @@ public class NightCommand implements CommandExecutor {
         if(CheckPermission.checkPerm("essentials.time.night", player)){
             World w = player.getWorld();
             w.setTime(Long.parseLong("13000"));
-            player.sendMessage(ColorCoder.convertColor("&6The time was successfully set to night."));
+            player.sendMessage(ChatColor.DARK_GREEN + "The time was successfully set to night.");
             return true;
         }
         return false;
