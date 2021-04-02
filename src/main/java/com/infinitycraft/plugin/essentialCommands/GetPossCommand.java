@@ -46,7 +46,7 @@ public class GetPossCommand implements CommandExecutor {
                 return true;
             }else{
                 Location loc = target.getLocation();
-                player.sendMessage(ChatColor.DARK_GREEN + "The location of " + target.getName() + " is " + loc.getX() + loc.getY() + loc.getZ() + " in world " + loc.getWorld());
+                player.sendMessage(ChatColor.DARK_GREEN + "The location of " + target.getName() + " is X: " + loc.getBlockX() + " Y: " + loc.getBlockY() + " Z: " + loc.getBlockZ() + " in world " + loc.getWorld().getName());
                 return true;
             }
 
