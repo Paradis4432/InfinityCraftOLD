@@ -18,6 +18,7 @@ public class FlyCommand implements CommandExecutor {
      * @param label The label of the command
      * @param args The commands arguments
      * @return Whether or not the command was used successfully
+     * finish time arg to add X time to FlyTime in sql
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args){
@@ -50,7 +51,6 @@ public class FlyCommand implements CommandExecutor {
                 player.sendMessage(ChatColor.DARK_RED + "Player not found");
                 return true;
             }
-            //
             if(CheckPermission.checkPerm("essentials.fly.others", player)){
                 if (target.getAllowFlight()) {
                     target.setAllowFlight(false);
