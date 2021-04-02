@@ -20,7 +20,7 @@ public class GamemodeCommand implements CommandExecutor {
      * @param label The label of the command
      * @param args The commands arguments
      * @return Whether or not the command was used successfully
-     * usuage: /[gm/gamemode] [0/1/2] [Player]
+     * usage: /[gm/gamemode] [0/1/2] [Player]
      */
 
     @Override
@@ -38,7 +38,7 @@ public class GamemodeCommand implements CommandExecutor {
                 player.sendMessage(ColorCoder.convertColor("&cUsage: gamemode [0/1/2] [player]"));
             }
         }
-        if(args.length == 1){
+        if(args[2] == null){
             switch (args[1]) {
                 case "0":
                     if (CheckPermission.checkPerm("essentials.gamemode.0", player)) {
@@ -69,12 +69,12 @@ public class GamemodeCommand implements CommandExecutor {
 
         Player target = Bukkit.getServer().getPlayer(args[2]);
 
-        if(args.length == 2){
+        if(target != null){
             if(CheckPermission.checkPerm("essentials.gamemode.admin", player)){
                 switch (args[1]) {
                     case "0":
                         target.setGameMode(GameMode.SURVIVAL);
-                        target.sendMessage(ChatColor.DARK_GREEN + "Your gamemode has been changed to Surival by " + player.getName());
+                        target.sendMessage(ChatColor.DARK_GREEN + "Your gamemode has been changed to Survival by " + player.getName());
                         player.sendMessage(ChatColor.DARK_GREEN + "You changed the gamemode of " + target.getName() + " to Survival");
                         return true;
                     case "1":
