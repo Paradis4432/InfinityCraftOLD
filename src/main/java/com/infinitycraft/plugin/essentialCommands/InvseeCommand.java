@@ -31,7 +31,7 @@ public class InvseeCommand  implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
-        if(CheckPermission.checkPerm("essentials.invsee",player)){
+        if(CheckPermission.checkPerm("essentials.invsee.admin",player)){
             if(args.length == 0){
                 player.sendMessage(ChatColor.DARK_RED + "To use this command, run: invsee [Player]");
             }
@@ -41,6 +41,7 @@ public class InvseeCommand  implements CommandExecutor {
                 player.openInventory(targetInv);
             }
         }
+        //add a way for players to see with event cancel
 
         return true;
     }

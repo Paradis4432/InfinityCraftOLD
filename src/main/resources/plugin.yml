@@ -49,3 +49,10 @@ commands:
     description: "Check the players with the most money!"
     usage: /baltop
     aliases: [ topbal, balancetop, topbalance ]
+  gm:
+    description: "Changes a player gamemode"
+    usage: /[gm/gamemode] [0/1/2] [Player]
+    aliases: [ gamemode]
+  full:
+    description: "Heals and feeds a player"
+    usage: /full [Player]
