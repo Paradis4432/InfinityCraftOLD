@@ -52,6 +52,6 @@ public class GetPossCommand implements CommandExecutor {
 
         }
 
-        return false;
+        return true;
     }
 }

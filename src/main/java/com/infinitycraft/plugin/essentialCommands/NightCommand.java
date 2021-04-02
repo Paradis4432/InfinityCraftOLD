@@ -34,6 +34,6 @@ public class NightCommand implements CommandExecutor {
             player.sendMessage(ChatColor.DARK_GREEN + "The time was successfully set to night.");
             return true;
         }
-        return false;
+        return true;
     }
 }

@@ -1,6 +1,9 @@
 package com.infinitycraft.plugin.essentialCommands;
 
+import com.infinitycraft.plugin.chatManager.ColorCoder;
+import com.infinitycraft.plugin.utilities.CheckPermission;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -16,6 +19,7 @@ public class BroadcastCommand implements CommandExecutor {
      * @param args The commands arguments
      * @return Whether or not the command was used successfully
      * broadcasts a message to all players
+     * feature : players will the perm will be allow to use the broadcast based on cooldown
      */
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
@@ -25,9 +29,25 @@ public class BroadcastCommand implements CommandExecutor {
             return true;
         }
 
-        Bukkit.broadcast("test", "essentials.broadcast");
+        Player player = (Player) sender;
 
+        StringBuilder sb = new StringBuilder();
+        for(int i = 0; i < args.length; i++){
+            sb.append(args[i]).append(" ");
+        }
+        String messageToBroacast = sb.toString();
 
-        return false;
+        if(CheckPermission.checkPerm("essentials.broadcast.admin", player)){
+            if(args.length == 0){
+                player.sendMessage(ChatColor.DARK_RED + "Invalid arguments");
+                return true;
+            }else{
+                messageToBroacast = ChatColor.translateAlternateColorCodes('&' , messageToBroacast);
+                Bukkit.broadcastMessage(ColorCoder.convertColor("&8[&6Infinity Craft&8]") + " " + messageToBroacast + ChatColor.DARK_GREEN + "- " + sender.getName());
+
+            }
+
+        }
+        return true;
     }
 }
