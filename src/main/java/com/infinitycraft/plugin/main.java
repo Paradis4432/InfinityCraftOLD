@@ -94,6 +94,8 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("baltop")).setExecutor(new BalTopCommand());
         Objects.requireNonNull(this.getCommand("gm")).setExecutor(new GamemodeCommand());
         Objects.requireNonNull(this.getCommand("full")).setExecutor(new FullCommand());
+        Objects.requireNonNull(this.getCommand("getposs")).setExecutor(new GetPossCommand());
+        Objects.requireNonNull(this.getCommand("broadcast")).setExecutor(new BroadcastCommand());
     }
 
     /**
