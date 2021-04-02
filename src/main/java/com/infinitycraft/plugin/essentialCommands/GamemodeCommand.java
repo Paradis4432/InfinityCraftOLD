@@ -35,64 +35,64 @@ public class GamemodeCommand implements CommandExecutor {
 
         if(args.length == 0){
             if(CheckPermission.checkPerm("essentials.gamemode", player)){
-                player.sendMessage(ColorCoder.convertColor("&cUsage: gamemode [0/1/2] [player]"));
+                player.sendMessage(ChatColor.DARK_RED + "Invalid arguments");
+                return true;
             }
         }
-        if(args[2] == null){
-            switch (args[1]) {
-                case "0":
-                    if (CheckPermission.checkPerm("essentials.gamemode.0", player)) {
-                        player.setGameMode(GameMode.SURVIVAL);
-                        player.sendMessage(ChatColor.DARK_GREEN + "Gamemode set to Survival.");
-                        return true;
-                    }
-                    break;
-                case "1":
-                    if (CheckPermission.checkPerm("essentials.gamemode.1", player)) {
-                        player.setGameMode(GameMode.CREATIVE);
-                        player.sendMessage(ChatColor.DARK_GREEN + "Gamemode set to Creative.");
-                        return true;
-                    }
-                    break;
-                case "2":
-                    if (CheckPermission.checkPerm("essentials.gamemode.2", player)) {
-                        player.setGameMode(GameMode.SPECTATOR);
-                        player.sendMessage(ChatColor.DARK_GREEN + "Gamemode set to Spectator.");
-                        return true;
-                    }
-                    break;
-                default:
-                    player.sendMessage(ChatColor.DARK_RED + "Invalid Argument!");
+
+        if(args.length == 1){
+            if(args[0].equals("0")){
+                if(CheckPermission.checkPerm("essentials.gamemode.survival", player)){
+                    player.setGameMode(GameMode.SURVIVAL);
+                    player.sendMessage(ChatColor.DARK_GREEN + "Gamemode set to Survival");
                     return true;
+                }
+            }else if(args[0].equals("1")){
+                if(CheckPermission.checkPerm("essentials.gamemode.creative", player)){
+                    player.setGameMode(GameMode.CREATIVE);
+                    player.sendMessage(ChatColor.DARK_GREEN + "Gamemode set to Creative");
+                    return true;
+                }
+            }else if(args[0].equals("2")){
+                if(CheckPermission.checkPerm("essentials.gamemode.spectator", player)){
+                    player.setGameMode(GameMode.SPECTATOR);
+                    player.sendMessage(ChatColor.DARK_GREEN + "Gamemode set to Spectator");
+                    return true;
+                }
+            }else{
+                player.sendMessage(ChatColor.DARK_RED + "Invalid arguments");
+                return true;
             }
         }
 
-        Player target = Bukkit.getServer().getPlayer(args[2]);
+        Player target = Bukkit.getServer().getPlayer(args[1]);
 
-        if(target != null){
-            if(CheckPermission.checkPerm("essentials.gamemode.admin", player)){
-                switch (args[1]) {
-                    case "0":
+        if(args.length == 2){
+            if(target == null){
+                player.sendMessage(ChatColor.DARK_RED + "Invalid arguments");
+                return true;
+            }else{
+                if(CheckPermission.checkPerm("essentials.gamemode.admin", player)){
+                    if(args[0].equals("0")){
                         target.setGameMode(GameMode.SURVIVAL);
                         target.sendMessage(ChatColor.DARK_GREEN + "Your gamemode has been changed to Survival by " + player.getName());
                         player.sendMessage(ChatColor.DARK_GREEN + "You changed the gamemode of " + target.getName() + " to Survival");
                         return true;
-                    case "1":
+                    }else if(args[0].equals("1")){
                         target.setGameMode(GameMode.CREATIVE);
                         target.sendMessage(ChatColor.DARK_GREEN + "Your gamemode has been changed to Creative by " + player.getName());
                         player.sendMessage(ChatColor.DARK_GREEN + "You changed the gamemode of " + target.getName() + " to Creative");
                         return true;
-                    case "2":
+                    }else if(args[0].equals("2")){
                         target.setGameMode(GameMode.SPECTATOR);
                         target.sendMessage(ChatColor.DARK_GREEN + "Your gamemode has been changed to Spectator by " + player.getName());
                         player.sendMessage(ChatColor.DARK_GREEN + "You changed the gamemode of " + target.getName() + " to Spectator");
                         return true;
-                    default:
-                        player.sendMessage(ChatColor.DARK_RED + "Invalid Argument!");
-                        break;
+                    }
                 }
             }
         }
+
 
         return false;
     }
