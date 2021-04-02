@@ -31,17 +31,18 @@ public class InvseeCommand  implements CommandExecutor {
             return true;
         }
         Player player = (Player) sender;
+        if(args.length == 0){
+            player.sendMessage(ChatColor.DARK_RED + "To use this command, run: invsee [Player]");
+            return true;
+        }
+        Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
         if(CheckPermission.checkPerm("essentials.invsee.admin",player)){
-            if(args.length == 0){
-                player.sendMessage(ChatColor.DARK_RED + "To use this command, run: invsee [Player]");
-            }
-            else{
-                Player targetPlayer = Bukkit.getServer().getPlayer(args[0]);
+            if(targetPlayer != null) {
                 Inventory targetInv = targetPlayer.getInventory();
                 player.openInventory(targetInv);
+                return true;
             }
-        }
-        //add a way for players to see with event cancel
+        }// if target not null open inv and cancel event on click
 
         return true;
     }
