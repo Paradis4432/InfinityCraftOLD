@@ -1,7 +1,5 @@
 package com.infinitycraft.plugin.essentialCommands;
 
-import com.infinitycraft.plugin.storageManager.EditObject;
-import com.infinitycraft.plugin.storageManager.GetObject;
 import com.infinitycraft.plugin.storageManager.SQLDatabase;
 import com.infinitycraft.plugin.utilities.CheckPermission;
 import org.bukkit.Bukkit;
@@ -43,7 +41,7 @@ public class UpvoteCommand implements CommandExecutor {
             return true;
         }
         if(CheckPermission.checkPerm("essentials.upvote", player)){
-            if (player.getName() == args[0]) {
+            if (player.getName().equals(args[0])) {
                 player.sendMessage(ChatColor.DARK_RED + "You can't upvote yourself!");
             }
             else {

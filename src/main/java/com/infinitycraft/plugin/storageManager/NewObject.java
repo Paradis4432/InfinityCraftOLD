@@ -14,7 +14,7 @@ public class NewObject {
      * @param balance The amount of money they have.
      * @param flyTime The amount of time they can fly
      */
-    public static void newPlayer(UUID ID, @Nullable String prefix, @Nullable String suffix, @Nullable String chatColor, @Nullable Integer balance,  @Nullable Integer flyTime) {
+    public static void newPlayer(UUID ID, @Nullable String prefix, @Nullable String suffix, @Nullable String chatColor, @Nullable Integer balance,  @Nullable Integer flyTime, @Nullable boolean online) {
         if (prefix == null) {
             prefix = "";
         }
@@ -30,7 +30,7 @@ public class NewObject {
         if (flyTime == null) {
             flyTime = 0;
         }
-        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor, balance, flyTime, name) VALUES ( UNHEX(?), ?, ?, ?, ?, ?, ?)")) {
+        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor, balance, flyTime, name, online) VALUES ( UNHEX(?), ?, ?, ?, ?, ?, ?, ?)")) {
             newPlayer.setString(1, String.valueOf(ID).replaceAll("-", ""));
             newPlayer.setString(2, prefix);
             newPlayer.setString(3, suffix);
@@ -38,6 +38,7 @@ public class NewObject {
             newPlayer.setInt(5 , balance);
             newPlayer.setInt(6 ,flyTime);
             newPlayer.setString(7, "");
+            newPlayer.setBoolean(8, online);
             newPlayer.execute();
         } catch (Exception throwables) {
             throwables.printStackTrace();
