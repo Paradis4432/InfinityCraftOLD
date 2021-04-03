@@ -2,6 +2,7 @@ package com.infinitycraft.plugin.essentialCommands;
 
 import com.infinitycraft.plugin.storageManager.EditObject;
 import com.infinitycraft.plugin.storageManager.GetObject;
+import com.infinitycraft.plugin.storageManager.SQLDatabase;
 import com.infinitycraft.plugin.utilities.CheckPermission;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -10,6 +11,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import java.sql.PreparedStatement;
 
 public class ReportCommand implements CommandExecutor {
     /**
@@ -40,20 +43,32 @@ public class ReportCommand implements CommandExecutor {
             return true;
         }
         if(CheckPermission.checkPerm("essentials.report", player)){
+            String reason = "";
+            if (args.length < 2) {
+                reason = "";
+            }
+            else {
+                for(int i = 1; i < args.length; i++){
+                    String arg = args[i] + " ";
+                    reason = reason + arg;
+                }
+            }
             if (player.getName().equals(args[0])) {
                 player.sendMessage(ChatColor.DARK_RED + "You can't report yourself!");
             }
             else {
-                EditObject.editPlayer(target.getUniqueId(), "reports", (Integer) GetObject.getPlayer(target.getUniqueId(), "reports") + 1);
-                target.sendMessage(ChatColor.DARK_GREEN + "You reported " + player.getName() + "!");
+                try (PreparedStatement newReport = SQLDatabase.connection.prepareStatement("INSERT INTO reports (player, target, reason) VALUES ( UNHEX(?), UNHEX(?), ?)")) {
+                    player.sendMessage(ChatColor.GOLD + "You reported " + target.getName() + "!");
+                    newReport.setString(1, String.valueOf(player.getUniqueId()).replaceAll("-", ""));
+                    newReport.setString(2, String.valueOf(target.getUniqueId()).replaceAll("-", ""));
+                    newReport.setString(3, reason);
+                    newReport.execute();
+                } catch (Exception throwables) {
+                    throwables.printStackTrace();
+                }
             }
             return true;
         }
         return false;
-    }
-    public static void checkPunishment(Player target) {
-        Integer reports = (Integer) GetObject.getPlayer(target.getUniqueId(), "reports");
-        Integer upvotes = (Integer) GetObject.getPlayer(target.getUniqueId(), "upvotes");
-        Integer score = upvotes - reports;
     }
 }

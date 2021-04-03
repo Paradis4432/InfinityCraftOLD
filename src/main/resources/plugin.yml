@@ -63,3 +63,9 @@ commands:
     description: "Sends a message to all players"
     usage: /broadcast [Message]
     aliases: [br]
+  report:
+    description: "Reports a player to staff"
+    usage: /report [player] <reason>
+  upvote:
+    description: "Tells staff that a player is good"
+    usage: /upvote [player]

@@ -29,7 +29,10 @@ public class DatabaseManager {
         tables.put("items", "create table items ( ID int auto_increment, constraint blocks_pk primary key (ID) );");
         // Settings Table
         tables.put("settings", "create table settings ( ID TEXT not null )");
-        //
+        // Reports Table
+        tables.put("reports", "create table reports ( time timestamp default current_timestamp() not null, player binary(16) not null, target binary(16) not null );");
+        // Upvotes table
+        tables.put("upvotes", "create table upvotes ( time timestamp default current_timestamp() not null, player binary(16) not null, target binary(16) not null );");
         // Return Map
         return tables;
     }
@@ -56,12 +59,6 @@ public class DatabaseManager {
         columns.put(balance, "alter table players add balance INT");
         ArrayList<String> flyTime = new ArrayList<>(Arrays.asList("players", "flyTime"));
         columns.put(flyTime, "alter table players add flyTime INT");
-        ArrayList<String> upvotes = new ArrayList<>(Arrays.asList("players", "upvotes"));
-        columns.put(upvotes, "alter table players add upvotes INT");
-        ArrayList<String> upvotesAvailable = new ArrayList<>(Arrays.asList("players", "upvotesAvailable"));
-        columns.put(upvotesAvailable, "alter table players add upvotesAvailable INT");
-        ArrayList<String> reports = new ArrayList<>(Arrays.asList("players", "reports"));
-        columns.put(reports, "alter table players add reports INT");
         // Blocks Table
         ArrayList<String> blockPerm = new ArrayList<>(Arrays.asList("blocks", "permission"));
         columns.put(blockPerm, "alter table blocks add permission TEXT");
@@ -71,6 +68,22 @@ public class DatabaseManager {
         // Settings Table
         ArrayList<String> value = new ArrayList<>(Arrays.asList("settings", "value"));
         columns.put(value, "alter table settings add value TEXT");
+        // Reports Table
+        ArrayList<String> reportTime = new ArrayList<>(Arrays.asList("reports", "time"));
+        columns.put(reportTime, "alter table reports add time timestamp default current_timestamp() not null");
+        ArrayList<String> reportPlayer = new ArrayList<>(Arrays.asList("reports", "player"));
+        columns.put(reportPlayer, "alter table reports add player binary(16) not null");
+        ArrayList<String> reportTarget = new ArrayList<>(Arrays.asList("reports", "target"));
+        columns.put(reportTarget, "alter table reports add target binary(16) not null");
+        ArrayList<String> reportReason = new ArrayList<>(Arrays.asList("reports", "reason"));
+        columns.put(reportReason, "alter table reports add reason TEXT not null");
+        // Upvotes Table
+        ArrayList<String> upvoteTime = new ArrayList<>(Arrays.asList("upvotes", "time"));
+        columns.put(upvoteTime, "alter table upvotes add time timestamp default current_timestamp() not null");
+        ArrayList<String> upvotePlayer = new ArrayList<>(Arrays.asList("upvotes", "player"));
+        columns.put(upvotePlayer, "alter table upvotes add player binary(16) not null");
+        ArrayList<String> upvoteTarget = new ArrayList<>(Arrays.asList("upvotes", "target"));
+        columns.put(upvoteTarget, "alter table upvotes add target binary(16) not null");
         // Return Map
         return columns;
     }

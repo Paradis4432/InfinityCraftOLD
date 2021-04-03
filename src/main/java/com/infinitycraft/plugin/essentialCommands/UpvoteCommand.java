@@ -2,6 +2,7 @@ package com.infinitycraft.plugin.essentialCommands;
 
 import com.infinitycraft.plugin.storageManager.EditObject;
 import com.infinitycraft.plugin.storageManager.GetObject;
+import com.infinitycraft.plugin.storageManager.SQLDatabase;
 import com.infinitycraft.plugin.utilities.CheckPermission;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -10,6 +11,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
+
+import java.sql.PreparedStatement;
 
 public class UpvoteCommand implements CommandExecutor {
     /**
@@ -43,12 +46,16 @@ public class UpvoteCommand implements CommandExecutor {
             if (player.getName() == args[0]) {
                 player.sendMessage(ChatColor.DARK_RED + "You can't upvote yourself!");
             }
-            else if ( (Integer) GetObject.getPlayer(player.getUniqueId(), "upvotesAvailable") == 0){
-                player.sendMessage( ChatColor.DARK_RED + "You've used all of your upvotes for this week! You will get some more at the beggining of next week!");
-            }
             else {
-                EditObject.editPlayer(target.getUniqueId(), "upvotes", (Integer) GetObject.getPlayer(target.getUniqueId(), "upvotes") + 1);
-                target.sendMessage(ChatColor.DARK_GREEN + "You upvoted " + player.getName() + "!");
+                try (PreparedStatement newUpvote = SQLDatabase.connection.prepareStatement("INSERT INTO upvotes (player, target) VALUES ( UNHEX(?), UNHEX(?))")) {
+                    player.sendMessage(ChatColor.GOLD + "You upvoted " + target.getName() + "!");
+                    newUpvote.setString(1, String.valueOf(player.getUniqueId()).replaceAll("-", ""));
+                    newUpvote.setString(2, String.valueOf(target.getUniqueId()).replaceAll("-", ""));
+                    newUpvote.execute();
+                } catch (Exception throwables) {
+                    throwables.printStackTrace();
+                }
+
             }
             return true;
         }

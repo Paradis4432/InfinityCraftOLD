@@ -43,8 +43,4 @@ public class BalanceCommand implements CommandExecutor {
         }
         return false;
     }
-    // BAL OPENS SQL AND CHECKS BAL
-    // COMMANDS:
-    // baltop
-    // bal <set/add/remove> <Player> <int>
 }

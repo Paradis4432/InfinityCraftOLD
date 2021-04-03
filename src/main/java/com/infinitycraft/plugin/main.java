@@ -100,6 +100,8 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("full")).setExecutor(new FullCommand());
         Objects.requireNonNull(this.getCommand("getpos")).setExecutor(new getpos());
         Objects.requireNonNull(this.getCommand("broadcast")).setExecutor(new BroadcastCommand());
+        Objects.requireNonNull(this.getCommand("upvote")).setExecutor(new UpvoteCommand());
+        Objects.requireNonNull(this.getCommand("report")).setExecutor(new ReportCommand());
     }
 
     /**
