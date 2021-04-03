@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class ReportCommand implements CommandExecutor {
+public class UpvoteCommand implements CommandExecutor {
     /**
      * A simple /upvote command
      * @param sender The sender of the command
@@ -29,7 +29,7 @@ public class ReportCommand implements CommandExecutor {
 
         Player player = (Player) sender;
         if (args.length == 0) {
-            if (CheckPermission.checkPerm("essentials.report", player)) {
+            if (CheckPermission.checkPerm("essentials.upvote", player)) {
                 player.sendMessage(ChatColor.DARK_RED + "Please specify a player when running this command.");
                 return true;
             }
@@ -39,21 +39,20 @@ public class ReportCommand implements CommandExecutor {
             player.sendMessage(ChatColor.DARK_RED + "Looks like that player is offline or hasn't joined this server yet!");
             return true;
         }
-        if(CheckPermission.checkPerm("essentials.report", player)){
-            if (player.getName().equals(args[0])) {
-                player.sendMessage(ChatColor.DARK_RED + "You can't report yourself!");
+        if(CheckPermission.checkPerm("essentials.upvote", player)){
+            if (player.getName() == args[0]) {
+                player.sendMessage(ChatColor.DARK_RED + "You can't upvote yourself!");
+            }
+            else if ( (Integer) GetObject.getPlayer(player.getUniqueId(), "upvotesAvailable") == 0){
+                player.sendMessage( ChatColor.DARK_RED + "You've used all of your upvotes for this week! You will get some more at the beggining of next week!");
             }
             else {
-                EditObject.editPlayer(target.getUniqueId(), "reports", (Integer) GetObject.getPlayer(target.getUniqueId(), "reports") + 1);
-                target.sendMessage(ChatColor.DARK_GREEN + "You reported " + player.getName() + "!");
+                EditObject.editPlayer(target.getUniqueId(), "upvotes", (Integer) GetObject.getPlayer(target.getUniqueId(), "upvotes") + 1);
+                target.sendMessage(ChatColor.DARK_GREEN + "You upvoted " + player.getName() + "!");
             }
             return true;
         }
         return false;
     }
-    public static void checkPunishment(Player target) {
-        Integer reports = (Integer) GetObject.getPlayer(target.getUniqueId(), "reports");
-        Integer upvotes = (Integer) GetObject.getPlayer(target.getUniqueId(), "upvotes");
-        Integer score = upvotes - reports;
-    }
+
 }

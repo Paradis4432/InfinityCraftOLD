@@ -56,7 +56,7 @@ commands:
   full:
     description: "Heals and feeds a player"
     usage: /full [Player]
-  getposs:
+  getpos:
     description: "Gets the possition and the world of a target"
     usage: /getposs [Player]
   broadcast:

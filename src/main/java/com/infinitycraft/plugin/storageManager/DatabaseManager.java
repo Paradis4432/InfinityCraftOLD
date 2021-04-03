@@ -56,6 +56,12 @@ public class DatabaseManager {
         columns.put(balance, "alter table players add balance INT");
         ArrayList<String> flyTime = new ArrayList<>(Arrays.asList("players", "flyTime"));
         columns.put(flyTime, "alter table players add flyTime INT");
+        ArrayList<String> upvotes = new ArrayList<>(Arrays.asList("players", "upvotes"));
+        columns.put(upvotes, "alter table players add upvotes INT");
+        ArrayList<String> upvotesAvailable = new ArrayList<>(Arrays.asList("players", "upvotesAvailable"));
+        columns.put(upvotesAvailable, "alter table players add upvotesAvailable INT");
+        ArrayList<String> reports = new ArrayList<>(Arrays.asList("players", "reports"));
+        columns.put(reports, "alter table players add reports INT");
         // Blocks Table
         ArrayList<String> blockPerm = new ArrayList<>(Arrays.asList("blocks", "permission"));
         columns.put(blockPerm, "alter table blocks add permission TEXT");

@@ -7,10 +7,12 @@ import com.infinitycraft.plugin.chatManager.affixes.commands.AffixesCommand;
 import com.infinitycraft.plugin.chatManager.affixes.events.AffixesGUIEvents;
 import com.infinitycraft.plugin.chatManager.affixes.events.PositionSelectorEvents;
 import com.infinitycraft.plugin.essentialCommands.*;
+import com.infinitycraft.plugin.essentialCommands.automatedEvents.FlyTime;
 import com.infinitycraft.plugin.storageManager.*;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitScheduler;
+import org.bukkit.scheduler.BukkitTask;
 
 import java.util.Objects;
 
@@ -46,6 +48,8 @@ public final class main extends JavaPlugin {
         registerEvents();
         // Register Commands
         registerCommands();
+        // Register Schedgules
+        registerSchedgules();
         // Send message
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "InfinityCraft Plugin Enabled");
     }
@@ -94,7 +98,7 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("baltop")).setExecutor(new BalTopCommand());
         Objects.requireNonNull(this.getCommand("gm")).setExecutor(new GamemodeCommand());
         Objects.requireNonNull(this.getCommand("full")).setExecutor(new FullCommand());
-        Objects.requireNonNull(this.getCommand("getposs")).setExecutor(new GetPossCommand());
+        Objects.requireNonNull(this.getCommand("getpos")).setExecutor(new getpos());
         Objects.requireNonNull(this.getCommand("broadcast")).setExecutor(new BroadcastCommand());
     }
 
@@ -102,7 +106,8 @@ public final class main extends JavaPlugin {
      * Schedule all the events!
      */
     public void registerSchedgules() {
-
+        BukkitScheduler scheduler = getServer().getScheduler();
+        BukkitTask TaskName = new FlyTime().runTaskTimer(this, 1200, 1200);
     }
 
 

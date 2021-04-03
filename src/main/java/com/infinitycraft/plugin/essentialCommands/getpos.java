@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-public class GetPossCommand implements CommandExecutor {
+public class getpos implements CommandExecutor {
     /**
      * A simple /getposs command
      * @param sender The sender of the command
@@ -33,9 +33,9 @@ public class GetPossCommand implements CommandExecutor {
 
         Player player = (Player) sender;
 
-        if(CheckPermission.checkPerm("essentials.getposs", player)){
+        if(CheckPermission.checkPerm("essentials.getpos", player)){
             if(args.length == 0){
-                player.sendMessage(ChatColor.DARK_RED + "Usage: getposs [Player]");
+                player.sendMessage(ChatColor.DARK_RED + "Usage: /getpos [Player]");
                 return true;
             }
 
@@ -46,7 +46,7 @@ public class GetPossCommand implements CommandExecutor {
                 return true;
             }else{
                 Location loc = target.getLocation();
-                player.sendMessage(ChatColor.DARK_GREEN + "The location of " + target.getName() + " is " + loc.getX() + loc.getY() + loc.getZ() + " in world " + loc.getWorld());
+                player.sendMessage(ChatColor.GOLD + "The location of " + target.getName() + " is " + loc.getX() + loc.getY() + loc.getZ() + " in the world " + loc.getWorld() + ".");
                 return true;
             }
 
