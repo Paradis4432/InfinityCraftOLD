@@ -69,3 +69,6 @@ commands:
   upvote:
     description: "Tells staff that a player is good"
     usage: /upvote [player]
+  playtime:
+    description: "Checks a player's playtime"
+    usage: /playtime <player>

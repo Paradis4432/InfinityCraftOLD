@@ -1,14 +1,15 @@
 package com.infinitycraft.plugin;
 
-import com.infinitycraft.plugin.chatManager.events.BasicChatEvent;
-import com.infinitycraft.plugin.chatManager.chatColor.commands.ChatColorChangerCommand;
-import com.infinitycraft.plugin.chatManager.chatColor.events.ChatColorChangerEvent;
-import com.infinitycraft.plugin.chatManager.affixes.commands.AffixesCommand;
-import com.infinitycraft.plugin.chatManager.affixes.events.AffixesGUIEvents;
-import com.infinitycraft.plugin.chatManager.affixes.events.PositionSelectorEvents;
-import com.infinitycraft.plugin.essentialCommands.*;
-import com.infinitycraft.plugin.essentialCommands.automatedEvents.FlyTime;
-import com.infinitycraft.plugin.storageManager.*;
+import com.infinitycraft.plugin.general.chat.ChatHandler;
+import com.infinitycraft.plugin.general.chat.chatColor.commands.ChatColorChangerCommand;
+import com.infinitycraft.plugin.general.chat.chatColor.events.ChatColorChangerEvent;
+import com.infinitycraft.plugin.general.chat.affixes.commands.AffixesCommand;
+import com.infinitycraft.plugin.general.chat.affixes.events.AffixesGUIEvents;
+import com.infinitycraft.plugin.general.chat.affixes.events.PositionSelectorEvents;
+import com.infinitycraft.plugin.general.essentials.*;
+import com.infinitycraft.plugin.general.essentials.automatedEvents.FlyTime;
+import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
+import com.infinitycraft.plugin.general.storageManager.*;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -76,7 +77,7 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new AffixesGUIEvents(), this);
         getServer().getPluginManager().registerEvents(new PositionSelectorEvents(), this);
         getServer().getPluginManager().registerEvents(new ChatColorChangerEvent(), this);
-        getServer().getPluginManager().registerEvents(new BasicChatEvent(), this);
+        getServer().getPluginManager().registerEvents(new ChatHandler(), this);
         getServer().getPluginManager().registerEvents(new StorageAutomation(), this);
     }
 
@@ -98,10 +99,11 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("baltop")).setExecutor(new BalTopCommand());
         Objects.requireNonNull(this.getCommand("gm")).setExecutor(new GamemodeCommand());
         Objects.requireNonNull(this.getCommand("full")).setExecutor(new FullCommand());
-        Objects.requireNonNull(this.getCommand("getpos")).setExecutor(new getpos());
+        Objects.requireNonNull(this.getCommand("GetPos")).setExecutor(new GetPos());
         Objects.requireNonNull(this.getCommand("broadcast")).setExecutor(new BroadcastCommand());
         Objects.requireNonNull(this.getCommand("upvote")).setExecutor(new UpvoteCommand());
         Objects.requireNonNull(this.getCommand("report")).setExecutor(new ReportCommand());
+        Objects.requireNonNull(this.getCommand("playtime")).setExecutor(new PlayTimeCommand());
     }
 
     /**
@@ -109,7 +111,8 @@ public final class main extends JavaPlugin {
      */
     public void registerSchedgules() {
         BukkitScheduler scheduler = getServer().getScheduler();
-        BukkitTask TaskName = new FlyTime().runTaskTimer(this, 1200, 1200);
+        BukkitTask flyTime = new FlyTime().runTaskTimer(this, 1200, 1200);
+        BukkitTask playTime = new PlayTime().runTaskTimer(this, 1200, 1200);
     }
 
 
