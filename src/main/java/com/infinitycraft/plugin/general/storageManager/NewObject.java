@@ -1,5 +1,7 @@
 package com.infinitycraft.plugin.general.storageManager;
 
+import org.bukkit.entity.Player;
+
 import javax.annotation.Nullable;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,35 +16,10 @@ public class NewObject {
      * @param balance The amount of money they have.
      * @param flyTime The amount of time they can fly
      */
-    public static void newPlayer(UUID ID, @Nullable String prefix, @Nullable String suffix, @Nullable String chatColor, @Nullable Integer balance,  @Nullable Integer flyTime, boolean online, @Nullable Integer playTime) {
-        if (prefix == null) {
-            prefix = "";
-        }
-        if (suffix == null) {
-            suffix = "";
-        }
-        if (chatColor == null) {
-            chatColor = "";
-        }
-        if (balance == null) {
-            balance = 0;
-        }
-        if (flyTime == null) {
-            flyTime = 0;
-        }
-        if (playTime == null) {
-            playTime = 0;
-        }
-        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor, balance, flyTime, name, online, playTime) VALUES ( UNHEX(?), ?, ?, ?, ?, ?, ?, ?, ?)")) {
-            newPlayer.setString(1, String.valueOf(ID).replaceAll("-", ""));
-            newPlayer.setString(2, prefix);
-            newPlayer.setString(3, suffix);
-            newPlayer.setString(4, chatColor);
-            newPlayer.setInt(5, balance);
-            newPlayer.setInt(6, flyTime);
-            newPlayer.setString(7, "");
-            newPlayer.setBoolean(8, online);
-            newPlayer.setInt(9, playTime);
+    public static void newPlayer(Player player) {
+        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor, balance, flyTime, name, online, playTime, staffMode, staffInventory, staffArmor) VALUES ( UNHEX(?), '', '', '', 0, 0, ?, true, 0, false, '', '')")) {
+            newPlayer.setString(1, String.valueOf(player.getUniqueId()).replaceAll("-", ""));
+            newPlayer.setString(2, player.getName());
             newPlayer.execute();
         } catch (Exception throwables) {
             throwables.printStackTrace();

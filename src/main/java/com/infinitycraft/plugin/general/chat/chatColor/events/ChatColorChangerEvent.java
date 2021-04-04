@@ -48,7 +48,7 @@ public class ChatColorChangerEvent implements Listener {
                 e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to green!");
             }
             else if (Objects.requireNonNull(e.getInventory().getItem(e.getSlot())).hashCode() == ChatColorChanger.aqua.hashCode()){
-                EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&7");
+                EditObject.editPlayer(e.getWhoClicked().getUniqueId(), "chatColor", "&b");
                 e.getWhoClicked().closeInventory();
                 e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN + "Successfully set your chat color to aqua!");
             }

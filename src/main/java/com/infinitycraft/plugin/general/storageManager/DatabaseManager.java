@@ -63,6 +63,12 @@ public class DatabaseManager {
         columns.put(online, "alter table players add online boolean");
         ArrayList<String> playTime = new ArrayList<>(Arrays.asList("players", "playTime"));
         columns.put(playTime, "alter table players add playTime int");
+        ArrayList<String> staffMode = new ArrayList<>(Arrays.asList("players", "staffMode"));
+        columns.put(staffMode, "alter table players add staffMode boolean");
+        ArrayList<String> staffInventory = new ArrayList<>(Arrays.asList("players", "staffInventory"));
+        columns.put(staffInventory, "alter table players add staffInventory TEXT");
+        ArrayList<String> staffArmor = new ArrayList<>(Arrays.asList("players", "staffArmor"));
+        columns.put(staffArmor, "alter table players add staffArmor TEXT");
         // Blocks Table
         ArrayList<String> blockPerm = new ArrayList<>(Arrays.asList("blocks", "permission"));
         columns.put(blockPerm, "alter table blocks add permission TEXT");

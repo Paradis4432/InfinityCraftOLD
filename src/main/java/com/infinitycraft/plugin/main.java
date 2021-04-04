@@ -9,6 +9,7 @@ import com.infinitycraft.plugin.general.chat.affixes.events.PositionSelectorEven
 import com.infinitycraft.plugin.general.essentials.*;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.FlyTime;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
+import com.infinitycraft.plugin.general.staffMode.commands.staff;
 import com.infinitycraft.plugin.general.storageManager.*;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -104,6 +105,7 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("upvote")).setExecutor(new UpvoteCommand());
         Objects.requireNonNull(this.getCommand("report")).setExecutor(new ReportCommand());
         Objects.requireNonNull(this.getCommand("playtime")).setExecutor(new PlayTimeCommand());
+        Objects.requireNonNull(this.getCommand("staff")).setExecutor(new staff());
     }
 
     /**

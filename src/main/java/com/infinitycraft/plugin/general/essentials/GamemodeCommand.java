@@ -40,19 +40,19 @@ public class GamemodeCommand implements CommandExecutor {
         }
 
         if(args.length == 1){
-            if(args[0].equals("0") || args[0].equals("s")){
+            if(args[0].equals("0") || args[0].equals("s") || args[0].equals("survival")){
                 if(CheckPermission.checkPerm("essentials.gamemode.survival", player)){
                     player.setGameMode(GameMode.SURVIVAL);
                     player.sendMessage(ChatColor.DARK_GREEN + "Gamemode set to Survival");
                     return true;
                 }
-            }else if(args[0].equals("1") || args[0].equals("c")){
+            }else if(args[0].equals("1") || args[0].equals("c") || args[0].equals("creative")){
                 if(CheckPermission.checkPerm("essentials.gamemode.creative", player)){
                     player.setGameMode(GameMode.CREATIVE);
                     player.sendMessage(ChatColor.DARK_GREEN + "Gamemode set to Creative");
                     return true;
                 }
-            }else if(args[0].equals("2") || args[0].equals("sp")){
+            }else if(args[0].equals("2") || args[0].equals("sp") || args[0].equals("spectator")){
                 if(CheckPermission.checkPerm("essentials.gamemode.spectator", player)){
                     player.setGameMode(GameMode.SPECTATOR);
                     player.sendMessage(ChatColor.DARK_GREEN + "Gamemode set to Spectator");
@@ -72,17 +72,17 @@ public class GamemodeCommand implements CommandExecutor {
                 return true;
             }else{
                 if(CheckPermission.checkPerm("essentials.gamemode.admin", player)){
-                    if(args[0].equals("0")){
+                    if(args[0].equals("0") || args[0].equals("s") || args[0].equals("survival")){
                         target.setGameMode(GameMode.SURVIVAL);
                         target.sendMessage(ChatColor.DARK_GREEN + "Your gamemode has been changed to Survival by " + player.getName());
                         player.sendMessage(ChatColor.DARK_GREEN + "You changed the gamemode of " + target.getName() + " to Survival");
                         return true;
-                    }else if(args[0].equals("1")){
+                    }else if(args[0].equals("1") || args[0].equals("c") || args[0].equals("creative")){
                         target.setGameMode(GameMode.CREATIVE);
                         target.sendMessage(ChatColor.DARK_GREEN + "Your gamemode has been changed to Creative by " + player.getName());
                         player.sendMessage(ChatColor.DARK_GREEN + "You changed the gamemode of " + target.getName() + " to Creative");
                         return true;
-                    }else if(args[0].equals("2")){
+                    }else if(args[0].equals("2") || args[0].equals("sp") || args[0].equals("spectator")){
                         target.setGameMode(GameMode.SPECTATOR);
                         target.sendMessage(ChatColor.DARK_GREEN + "Your gamemode has been changed to Spectator by " + player.getName());
                         player.sendMessage(ChatColor.DARK_GREEN + "You changed the gamemode of " + target.getName() + " to Spectator");

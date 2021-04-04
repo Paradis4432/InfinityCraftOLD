@@ -72,3 +72,6 @@ commands:
   playtime:
     description: "Checks a player's playtime"
     usage: /playtime <player>
+  staff:
+    description: "Enables staff mode"
+    usage: /staff
