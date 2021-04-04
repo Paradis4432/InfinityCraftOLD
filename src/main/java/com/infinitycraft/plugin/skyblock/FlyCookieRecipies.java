@@ -1,4 +1,4 @@
-package com.infinitycraft.plugin.general.essentials;
+package com.infinitycraft.plugin.skyblock;
 
 public class FlyCookieRecipies {
     /**
