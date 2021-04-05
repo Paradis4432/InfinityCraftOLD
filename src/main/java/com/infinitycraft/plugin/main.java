@@ -89,6 +89,7 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new RandomTeleportEvent(), this);
         getServer().getPluginManager().registerEvents(new FakeKickEvent(), this);
         getServer().getPluginManager().registerEvents(new MainStaffEvent(), this);
+        getServer().getPluginManager().registerEvents(new StaffMenuEvent(), this);
     }
 
     /**
