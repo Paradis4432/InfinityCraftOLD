@@ -10,8 +10,7 @@ import com.infinitycraft.plugin.general.essentials.*;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.FlyTime;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
 import com.infinitycraft.plugin.general.staffMode.commands.staff;
-import com.infinitycraft.plugin.general.staffMode.events.items.LauncherEvent;
-import com.infinitycraft.plugin.general.staffMode.events.items.VanishEvent;
+import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -19,6 +18,7 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.Objects;
+import java.util.Random;
 
 public final class main extends JavaPlugin {
     /**
@@ -84,6 +84,9 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new StorageAutomation(), this);
         getServer().getPluginManager().registerEvents(new LauncherEvent(), this);
         getServer().getPluginManager().registerEvents(new VanishEvent(), this);
+        getServer().getPluginManager().registerEvents(new RandomTeleportEvent(), this);
+        getServer().getPluginManager().registerEvents(new FakeKickEvent(), this);
+        getServer().getPluginManager().registerEvents(new MainStaffEvent(), this);
     }
 
     /**

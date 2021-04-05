@@ -1,7 +1,9 @@
 package com.infinitycraft.plugin.general.staffMode.commands;
 
 import com.infinitycraft.plugin.general.staffMode.events.items.VanishEvent;
+import com.infinitycraft.plugin.general.staffMode.items.FakeKickItem;
 import com.infinitycraft.plugin.general.staffMode.items.LauncherItem;
+import com.infinitycraft.plugin.general.staffMode.items.RandomTeleportItem;
 import com.infinitycraft.plugin.general.staffMode.items.VanishItem;
 import com.infinitycraft.plugin.general.staffMode.tools.InventorySerializer;
 import com.infinitycraft.plugin.general.storageManager.EditObject;
@@ -67,8 +69,12 @@ public class staff implements CommandExecutor {
                 EditObject.editPlayer(player.getUniqueId(), "staffArmor", contents[1]);
                 player.getInventory().clear();
                 // Load Inventory
+                RandomTeleportItem.generate();
+                player.getInventory().setItem(0, RandomTeleportItem.randomTeleport);
                 LauncherItem.generate();
                 player.getInventory().setItem(2, LauncherItem.launcher);
+                FakeKickItem.generate();
+                player.getInventory().setItem(6, FakeKickItem.fakeKick);
                 VanishItem.generate();
                 player.getInventory().setItem(8, VanishItem.vanish1);
                 // Enable Staff Features

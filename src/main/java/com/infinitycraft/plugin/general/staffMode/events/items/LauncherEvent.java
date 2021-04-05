@@ -15,7 +15,7 @@ public class LauncherEvent implements Listener {
         if ((boolean) GetObject.getPlayer(e.getPlayer().getUniqueId(), "staffMode") && e.getPlayer().getInventory().getItemInMainHand().hashCode() == LauncherItem.launcher.hashCode()) {
             Player p = e.getPlayer();
             p.setVelocity(p.getLocation().getDirection().multiply(10));
-
+            e.setCancelled(true);
         }
     }
 }
