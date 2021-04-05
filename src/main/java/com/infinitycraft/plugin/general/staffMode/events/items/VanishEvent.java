@@ -17,10 +17,12 @@ public class VanishEvent implements Listener {
             if (e.getPlayer().getInventory().getItemInMainHand().hashCode() == VanishItem.vanish0.hashCode()) {
                 vanish(e.getPlayer());
                 e.getPlayer().getInventory().setItemInMainHand(VanishItem.vanish1);
+                e.setCancelled(true);
             }
             else if (e.getPlayer().getInventory().getItemInMainHand().hashCode() == VanishItem.vanish1.hashCode()) {
                 unvanish(e.getPlayer());
                 e.getPlayer().getInventory().setItemInMainHand(VanishItem.vanish0);
+                e.setCancelled(true);
             }
         }
     }
@@ -36,6 +38,7 @@ public class VanishEvent implements Listener {
     public static void unvanish(Player player) {
         for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
             if (!(pl == player)){
+                pl.showPlayer(player);
                 pl.sendMessage(ChatColor.YELLOW + player.getName() + " joined the game.");
             }
         }
