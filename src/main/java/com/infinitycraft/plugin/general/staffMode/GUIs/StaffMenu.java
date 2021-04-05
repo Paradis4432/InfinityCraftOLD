@@ -16,7 +16,7 @@ import java.sql.ResultSet;
 import java.util.*;
 
 public class StaffMenu {
-    public static void GenerateInventory(Player player, Integer page, boolean staffMode) {
+    public static void GenerateInventory(Player player, Integer page, boolean staffMode, String query) {
         // Make Items
         search = ItemCreator.createItem(Material.OAK_SIGN, 1, "Search Players", "Searches for all players in the server.");
         nextPage = ItemCreator.createItem(Material.ARROW, 1, "Next Page", "Show the next page of players.");
@@ -33,10 +33,20 @@ public class StaffMenu {
         try {
             ResultSet rs;
             if (staffMode){
-                 rs = SQLDatabase.statement.executeQuery("SELECT name FROM players WHERE online = true AND staffMode = 1 ORDER BY name LIMIT 28 OFFSET " + (page - 1) * 28 );
+                if (query.equals("")) {
+                    rs = SQLDatabase.statement.executeQuery("SELECT name FROM players WHERE online = true AND staffMode = 1 ORDER BY name LIMIT 28 OFFSET " + (page - 1) * 28 );
+                }
+                else {
+                    rs = SQLDatabase.statement.executeQuery("SELECT name FROM players WHERE online = true AND staffMode = 1  AND name LIKE '%" + query + "%' ORDER BY name LIMIT 28 OFFSET " + (page - 1) * 28 );
+                }
             }
             else {
-                rs = SQLDatabase.statement.executeQuery("SELECT name FROM players WHERE online = true ORDER BY name LIMIT 28 OFFSET " + (page - 1) * 28 );
+                if (query.equals("")){
+                    rs = SQLDatabase.statement.executeQuery("SELECT name FROM players WHERE online = true ORDER BY name LIMIT 28 OFFSET " + (page - 1) * 28 );
+                }
+                else {
+                    rs = SQLDatabase.statement.executeQuery("SELECT name FROM players WHERE online = true AND name LIKE '%" + query + "%' ORDER BY name LIMIT 28 OFFSET " + (page - 1) * 28 );
+                }
             }
             while (rs.next()) {
                 players.add(Bukkit.getPlayer(rs.getString("name")));
@@ -80,10 +90,20 @@ public class StaffMenu {
         }
         // Create Inventory
         if (staffMode) {
-            inv = CreateInventory.createCustomInventory(null, 6, "Staff Menu (Page " + page + ") " + "showing staff", Fillers.filler, itemMap);
+            if (query.equals("")){
+                inv = CreateInventory.createCustomInventory(null, 6, "Staff Menu (Page " + page + ") " + "Showing Staff", Fillers.filler, itemMap);
+            }
+            else {
+                inv = CreateInventory.createCustomInventory(null, 6, "Staff Menu (Page " + page + ") " + "Showing Staff, Searching For " + query, Fillers.filler, itemMap);
+            }
         }
         else {
-            inv = CreateInventory.createCustomInventory(null, 6, "Staff Menu (Page " + page + ")", Fillers.filler, itemMap);
+            if (query.equals("")) {
+                inv = CreateInventory.createCustomInventory(null, 6, "Staff Menu (Page " + page + ")" , Fillers.filler, itemMap);
+            }
+            else {
+                inv = CreateInventory.createCustomInventory(null, 6, "Staff Menu (Page " + page + ") Searching For " + query, Fillers.filler, itemMap);
+            }
         }
         player.openInventory(inv);
     }

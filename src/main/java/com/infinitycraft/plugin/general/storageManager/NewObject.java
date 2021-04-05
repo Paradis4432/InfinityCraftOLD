@@ -17,7 +17,7 @@ public class NewObject {
      * @param flyTime The amount of time they can fly
      */
     public static void newPlayer(Player player) {
-        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor, balance, flyTime, name, online, playTime, staffMode, staffInventory, staffArmor) VALUES ( UNHEX(?), '', '', '', 0, 0, ?, true, 0, false, '', '')")) {
+        try (PreparedStatement newPlayer = SQLDatabase.connection.prepareStatement("INSERT INTO players (UUID, prefix, suffix, chatColor, balance, flyTime, name, online, playTime, staffMode, staffInventory, staffArmor, vanished) VALUES ( UNHEX(?), '', '', '', 0, 0, ?, true, 0, false, '', '', false)")) {
             newPlayer.setString(1, String.valueOf(player.getUniqueId()).replaceAll("-", ""));
             newPlayer.setString(2, player.getName());
             newPlayer.execute();

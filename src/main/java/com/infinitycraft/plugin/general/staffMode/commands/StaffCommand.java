@@ -20,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.print.attribute.SetOfIntegerSyntax;
 import java.io.IOException;
 
-public class staff implements CommandExecutor {
+public class StaffCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
@@ -55,6 +55,10 @@ public class staff implements CommandExecutor {
                 VanishEvent.unvanish(player);
                 player.setAllowFlight(false);
                 player.setFlying(false);
+                player.setDisplayName(player.getName());
+                player.setCustomName(player.getName());
+                player.setPlayerListName(player.getName());
+                player.setCustomNameVisible(false);
             }
             else {
                 // Enable Staff

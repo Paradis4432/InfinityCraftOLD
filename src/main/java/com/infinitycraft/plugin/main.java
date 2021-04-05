@@ -9,7 +9,11 @@ import com.infinitycraft.plugin.general.chat.affixes.events.PositionSelectorEven
 import com.infinitycraft.plugin.general.essentials.*;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.FlyTime;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
-import com.infinitycraft.plugin.general.staffMode.commands.staff;
+import com.infinitycraft.plugin.general.staffMode.commands.NickCommand;
+import com.infinitycraft.plugin.general.staffMode.commands.StaffCommand;
+import com.infinitycraft.plugin.general.staffMode.commands.VanishCommand;
+import com.infinitycraft.plugin.general.staffMode.events.GUIs.StaffMenuEvent;
+import com.infinitycraft.plugin.general.staffMode.events.MainStaffEvent;
 import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
 import org.bukkit.ChatColor;
@@ -18,7 +22,6 @@ import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.Objects;
-import java.util.Random;
 
 public final class main extends JavaPlugin {
     /**
@@ -89,6 +92,7 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new RandomTeleportEvent(), this);
         getServer().getPluginManager().registerEvents(new FakeKickEvent(), this);
         getServer().getPluginManager().registerEvents(new MainStaffEvent(), this);
+        getServer().getPluginManager().registerEvents(new StaffMenuItemEvent(), this);
         getServer().getPluginManager().registerEvents(new StaffMenuEvent(), this);
     }
 
@@ -115,7 +119,9 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("upvote")).setExecutor(new UpvoteCommand());
         Objects.requireNonNull(this.getCommand("report")).setExecutor(new ReportCommand());
         Objects.requireNonNull(this.getCommand("playtime")).setExecutor(new PlayTimeCommand());
-        Objects.requireNonNull(this.getCommand("staff")).setExecutor(new staff());
+        Objects.requireNonNull(this.getCommand("staff")).setExecutor(new StaffCommand());
+        Objects.requireNonNull(this.getCommand("vanish")).setExecutor(new VanishCommand());
+        Objects.requireNonNull(this.getCommand("nick")).setExecutor(new NickCommand());
     }
 
     /**

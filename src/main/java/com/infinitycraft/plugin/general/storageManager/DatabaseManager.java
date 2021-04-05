@@ -69,6 +69,8 @@ public class DatabaseManager {
         columns.put(staffInventory, "alter table players add staffInventory TEXT");
         ArrayList<String> staffArmor = new ArrayList<>(Arrays.asList("players", "staffArmor"));
         columns.put(staffArmor, "alter table players add staffArmor TEXT");
+        ArrayList<String> vanished = new ArrayList<>(Arrays.asList("players", "vanished"));
+        columns.put(vanished, "alter table players add vanished boolean");
         // Blocks Table
         ArrayList<String> blockPerm = new ArrayList<>(Arrays.asList("blocks", "permission"));
         columns.put(blockPerm, "alter table blocks add permission TEXT");

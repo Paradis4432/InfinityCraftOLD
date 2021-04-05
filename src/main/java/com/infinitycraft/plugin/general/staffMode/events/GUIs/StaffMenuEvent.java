@@ -14,7 +14,6 @@ import org.bukkit.inventory.ItemStack;
 public class StaffMenuEvent implements Listener {
     @EventHandler
     public void InventoryClickEvent(InventoryClickEvent e) {
-        e.getWhoClicked().sendMessage("yes");
         // Exit
         if (e.getInventory().getItem(e.getSlot()).hashCode() == StaffMenu.exit.hashCode()) {
             e.getWhoClicked().closeInventory();
@@ -25,11 +24,16 @@ public class StaffMenuEvent implements Listener {
             String title = e.getView().getTitle();
             String pageString = title.replaceAll("[^0-9]","");
             int page = Integer.parseInt(pageString);
-            if (title.contains("showing staff")) {
-                StaffMenu.GenerateInventory((Player) e.getWhoClicked(), page + 1, true);
+            e.getWhoClicked().closeInventory();
+            String query = "";
+            if (title.contains("Searching For ")) {
+                query = title.substring(title.indexOf("Searching For ") + 14);
+            }
+            if (title.contains("Showing Staff")) {
+                StaffMenu.GenerateInventory((Player) e.getWhoClicked(), page + 1, true,query);
             }
             else {
-                StaffMenu.GenerateInventory((Player) e.getWhoClicked(), page + 1, false);
+                StaffMenu.GenerateInventory((Player) e.getWhoClicked(), page + 1, false, query);
             }
             e.setCancelled(true);
         }
@@ -39,11 +43,16 @@ public class StaffMenuEvent implements Listener {
             String pageString = title.replaceAll("[^0-9]","");
             int page = Integer.parseInt(pageString);
             if (page != 1) {
-                if (title.contains("showing staff")) {
-                    StaffMenu.GenerateInventory((Player) e.getWhoClicked(), page - 1, true);
+                e.getWhoClicked().closeInventory();
+                String query = "";
+                if (title.contains("Searching For ")) {
+                     query = title.substring(title.indexOf("Searching For ") + 14);
+                }
+                if (title.contains("Showing Staff")) {
+                    StaffMenu.GenerateInventory((Player) e.getWhoClicked(), page - 1, true, query);
                 }
                 else {
-                    StaffMenu.GenerateInventory((Player) e.getWhoClicked(), page - 1, false);
+                    StaffMenu.GenerateInventory((Player) e.getWhoClicked(), page - 1, false, query);
                 }
             }
             e.setCancelled(true);
@@ -65,9 +74,13 @@ public class StaffMenuEvent implements Listener {
         }
         // Nickname
         else if (e.getInventory().getItem(e.getSlot()).hashCode() == StaffMenu.nickName.hashCode()) {
+            e.getWhoClicked().closeInventory();
             new AnvilGUI.Builder()
                     .onComplete((player, text) -> {
+                        player.setDisplayName(text);
                         player.setCustomName(text);
+                        player.setPlayerListName(text);
+                        player.setCustomNameVisible(true);
                         e.getWhoClicked().sendMessage(ChatColor.DARK_GREEN +  "You have been successfully nicked.");
                         return AnvilGUI.Response.close();
                     })
@@ -78,8 +91,31 @@ public class StaffMenuEvent implements Listener {
                     .open((Player) e.getWhoClicked());
             e.setCancelled(true);
         }
-        else {
-            e.getWhoClicked().sendMessage("yes");
+        else if (e.getInventory().getItem(e.getSlot()).hashCode() == StaffMenu.showStaff.hashCode()) {
+            e.getWhoClicked().closeInventory();
+            StaffMenu.GenerateInventory((Player) e.getWhoClicked(), 1, true, "");
+            e.setCancelled(true);
+        }
+        else if (e.getInventory().getItem(e.getSlot()).hashCode() == StaffMenu.showPlayers.hashCode()) {
+            e.getWhoClicked().closeInventory();
+            StaffMenu.GenerateInventory((Player) e.getWhoClicked(), 1, false, "");
+            e.setCancelled(true);
+        }
+        else if (e.getInventory().getItem(e.getSlot()).hashCode() == StaffMenu.search.hashCode()) {
+            e.getWhoClicked().closeInventory();
+            new AnvilGUI.Builder()
+                    .onComplete((player, text) -> {
+                        if (e.getView().getTitle().contains("Showing Staff")) {
+                            StaffMenu.GenerateInventory((Player) e.getWhoClicked(), 1 , true, text);
+                        }
+                        else {StaffMenu.GenerateInventory((Player) e.getWhoClicked(), 1, false, text);}
+                        return AnvilGUI.Response.close();
+                    })
+                    .text("Please enter search query.")
+                    .itemLeft(new ItemStack(Material.PAPER))
+                    .title("Please enter search query.")
+                    .plugin(main.getInstance())
+                    .open((Player) e.getWhoClicked());
         }
     }
 }

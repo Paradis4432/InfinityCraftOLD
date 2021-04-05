@@ -2,6 +2,7 @@ package com.infinitycraft.plugin.general.staffMode.events.items;
 
 import com.infinitycraft.plugin.general.staffMode.items.LauncherItem;
 import com.infinitycraft.plugin.general.staffMode.items.VanishItem;
+import com.infinitycraft.plugin.general.storageManager.EditObject;
 import com.infinitycraft.plugin.general.storageManager.GetObject;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,6 +10,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+
+import javax.print.attribute.SetOfIntegerSyntax;
 
 public class VanishEvent implements Listener {
     @EventHandler
@@ -28,20 +31,22 @@ public class VanishEvent implements Listener {
     }
     public static void vanish(Player player) {
         for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
-            if (!(pl == player)) {
+            if (pl == player) {
                 pl.hidePlayer(player);
                 pl.sendMessage(ChatColor.YELLOW + player.getName() + " left the game.");
             }
         }
+        EditObject.editPlayer(player.getUniqueId(), "vanished", true);
         player.sendMessage(ChatColor.GOLD + "You are now vanished.");
     }
     public static void unvanish(Player player) {
         for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
-            if (!(pl == player)){
+            if (pl == player){
                 pl.showPlayer(player);
                 pl.sendMessage(ChatColor.YELLOW + player.getName() + " joined the game.");
             }
         }
+        EditObject.editPlayer(player.getUniqueId(), "vanished", false);
         player.sendMessage(ChatColor.GOLD + "You are now visible.");
     }
 

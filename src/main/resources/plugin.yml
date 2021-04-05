@@ -75,6 +75,12 @@ commands:
   staff:
     description: "Enables staff mode"
     usage: /staff
+  vanish:
+    description: "Toggles vanish"
+    usage: /vanish
+  nick:
+    description: "Enables or resets your nick"
+    usage: /nick <name>
   custom:
     description: "test command"
     usage: /custom

@@ -1,4 +1,4 @@
-package com.infinitycraft.plugin.general.staffMode.events.items;
+package com.infinitycraft.plugin.general.staffMode.events;
 
 import com.infinitycraft.plugin.general.storageManager.GetObject;
 import org.bukkit.event.EventHandler;
