@@ -56,7 +56,9 @@ public final class main extends JavaPlugin {
         registerSchedgules();
         // Send message
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "InfinityCraft Plugin Enabled");
+
     }
+
 
     /**
      * Plugin shutoff logic
@@ -120,5 +122,4 @@ public final class main extends JavaPlugin {
         BukkitTask flyTime = new FlyTime().runTaskTimer(this, 1200, 1200);
         BukkitTask playTime = new PlayTime().runTaskTimer(this, 1200, 1200);
     }
-
 }

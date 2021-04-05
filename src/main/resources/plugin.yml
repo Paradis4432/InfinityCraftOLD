@@ -75,3 +75,6 @@ commands:
   staff:
     description: "Enables staff mode"
     usage: /staff
+  custom:
+    description: "test command"
+    usage: /custom
