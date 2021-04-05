@@ -34,7 +34,7 @@ public class staff implements CommandExecutor {
         if (CheckPermission.checkPerm("essentials.staff", player)) {
             if ((boolean) GetObject.getPlayer(player.getUniqueId(), "staffMode")) {
                 // Disable Staff
-                player.sendMessage("Staff mode disabled.");
+                player.sendMessage(ChatColor.GOLD + "Staff mode disabled.");
                 EditObject.editPlayer(player.getUniqueId(), "staffMode", false);
                 // Load Inventory
                 ItemStack[] inventory = new ItemStack[0];
@@ -59,7 +59,7 @@ public class staff implements CommandExecutor {
             }
             else {
                 // Enable Staff
-                player.sendMessage("Staff mode enabled.");
+                player.sendMessage(ChatColor.GOLD + "Staff mode enabled.");
                 EditObject.editPlayer(player.getUniqueId(), "staffMode", true);
                 // Save Inventory
                 String[] contents = InventorySerializer.playerInventoryToBase64(player.getInventory());
