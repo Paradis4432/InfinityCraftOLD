@@ -10,11 +10,11 @@ import org.bukkit.event.server.ServerLoadEvent;
 import java.sql.SQLException;
 
 public class StorageAutomation implements Listener {
-    /**
-     *     Automatically create player in database when a player joins for the first time.
+    /** Completes actions when a player joins
+     *
      */
     @EventHandler
-    public void onNewPlayerJoin(PlayerJoinEvent e) {
+    public void onPlayerJoin(PlayerJoinEvent e) {
         if (!(e.getPlayer().hasPlayedBefore())) {
             NewObject.newPlayer(e.getPlayer());
         }
@@ -22,14 +22,11 @@ public class StorageAutomation implements Listener {
         if (!name.equals(e.getPlayer().getName())) {
             EditObject.editPlayer(e.getPlayer().getUniqueId(), "name", e.getPlayer().getName());
         }
-    }
-    /** Marks a player as online when they join
-     *
-     */
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent e) {
         Player player = e.getPlayer();
         EditObject.editPlayer(player.getUniqueId(), "online", true);
+        if ((boolean) GetObject.getPlayer(e.getPlayer().getUniqueId(), "staffMode")) {
+            e.getPlayer().performCommand("staff");
+        }
     }
 
     /**

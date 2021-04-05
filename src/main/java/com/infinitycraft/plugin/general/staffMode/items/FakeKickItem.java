@@ -5,9 +5,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class Launcher {
+public class FakeKickItem {
     public static void generate() {
-        launcher = ItemCreator.createItem(Material.BLAZE_ROD, 1, ChatColor.YELLOW + "Launcher", "Launches you in the direction you are facing!");
+        fakeKick = ItemCreator.createItem(Material.NETHERITE_AXE, 1, ChatColor.RED + "Fake Kick", "Disconnects a player.");
     }
-    public static ItemStack launcher;
+    public static ItemStack fakeKick;
 }

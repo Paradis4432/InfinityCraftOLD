@@ -1,5 +1,8 @@
 package com.infinitycraft.plugin.general.staffMode.commands;
 
+import com.infinitycraft.plugin.general.staffMode.events.items.VanishEvent;
+import com.infinitycraft.plugin.general.staffMode.items.LauncherItem;
+import com.infinitycraft.plugin.general.staffMode.items.VanishItem;
 import com.infinitycraft.plugin.general.staffMode.tools.InventorySerializer;
 import com.infinitycraft.plugin.general.storageManager.EditObject;
 import com.infinitycraft.plugin.general.storageManager.GetObject;
@@ -30,8 +33,10 @@ public class staff implements CommandExecutor {
     if (args.length == 0) {
         if (CheckPermission.checkPerm("essentials.staff", player)) {
             if ((boolean) GetObject.getPlayer(player.getUniqueId(), "staffMode")) {
+                // Disable Staff
                 player.sendMessage("Staff mode disabled.");
                 EditObject.editPlayer(player.getUniqueId(), "staffMode", false);
+                // Load Inventory
                 ItemStack[] inventory = new ItemStack[0];
                 ItemStack[] armor = new ItemStack[0];
                 try {
@@ -47,14 +52,29 @@ public class staff implements CommandExecutor {
                 player.getInventory().clear();
                 player.getInventory().setContents(inventory);
                 player.getInventory().setArmorContents(armor);
+                // Disable Staff Features
+                VanishEvent.unvanish(player);
+                player.setAllowFlight(false);
+                player.setFlying(false);
             }
             else {
+                // Enable Staff
                 player.sendMessage("Staff mode enabled.");
                 EditObject.editPlayer(player.getUniqueId(), "staffMode", true);
+                // Save Inventory
                 String[] contents = InventorySerializer.playerInventoryToBase64(player.getInventory());
                 EditObject.editPlayer(player.getUniqueId(), "staffInventory", contents[0]);
                 EditObject.editPlayer(player.getUniqueId(), "staffArmor", contents[1]);
                 player.getInventory().clear();
+                // Load Inventory
+                LauncherItem.generate();
+                player.getInventory().setItem(2, LauncherItem.launcher);
+                VanishItem.generate();
+                player.getInventory().setItem(8, VanishItem.vanish1);
+                // Enable Staff Features
+                VanishEvent.vanish(player);
+                player.setAllowFlight(true);
+                player.setFlying(true);
             }
             return true;
         }

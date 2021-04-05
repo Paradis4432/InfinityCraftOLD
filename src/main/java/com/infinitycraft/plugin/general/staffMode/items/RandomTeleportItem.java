@@ -5,9 +5,9 @@ import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
-public class FakeKick {
+public class RandomTeleportItem {
     public static void generate() {
-        fakeKick = ItemCreator.createItem(Material.NETHERITE_AXE, 1, ChatColor.RED + "Fake Kick", "Disconnects a player.");
+        randomTeleport = ItemCreator.createItem(Material.ENDER_EYE, 1, ChatColor.DARK_PURPLE + "Random Teleport", "Teleports to a random player!");
     }
-    public static ItemStack fakeKick;
+    public static ItemStack randomTeleport;
 }

@@ -10,6 +10,8 @@ import com.infinitycraft.plugin.general.essentials.*;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.FlyTime;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
 import com.infinitycraft.plugin.general.staffMode.commands.staff;
+import com.infinitycraft.plugin.general.staffMode.events.items.LauncherEvent;
+import com.infinitycraft.plugin.general.staffMode.events.items.VanishEvent;
 import com.infinitycraft.plugin.general.storageManager.*;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -80,6 +82,8 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ChatColorChangerEvent(), this);
         getServer().getPluginManager().registerEvents(new ChatHandler(), this);
         getServer().getPluginManager().registerEvents(new StorageAutomation(), this);
+        getServer().getPluginManager().registerEvents(new LauncherEvent(), this);
+        getServer().getPluginManager().registerEvents(new VanishEvent(), this);
     }
 
     /**
@@ -116,6 +120,5 @@ public final class main extends JavaPlugin {
         BukkitTask flyTime = new FlyTime().runTaskTimer(this, 1200, 1200);
         BukkitTask playTime = new PlayTime().runTaskTimer(this, 1200, 1200);
     }
-
 
 }
