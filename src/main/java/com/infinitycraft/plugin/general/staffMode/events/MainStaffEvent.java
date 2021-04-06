@@ -1,6 +1,7 @@
 package com.infinitycraft.plugin.general.staffMode.events;
 
 import com.infinitycraft.plugin.general.storageManager.GetObject;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -16,7 +17,11 @@ public class MainStaffEvent implements Listener {
     @EventHandler
     public void ItemUseEvent(PlayerInteractEvent e) {
         if ((boolean) GetObject.getPlayer(e.getPlayer().getUniqueId(), "staffMode")){
-            e.setCancelled(true);
+            if (e.getItem().getType() == Material.WRITTEN_BOOK) {
+                e.setCancelled(false);
+            }else {
+                e.setCancelled(true);
+            }
         }
     }
     @EventHandler

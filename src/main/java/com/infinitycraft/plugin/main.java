@@ -12,11 +12,13 @@ import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
 import com.infinitycraft.plugin.general.staffMode.commands.NickCommand;
 import com.infinitycraft.plugin.general.staffMode.commands.StaffCommand;
 import com.infinitycraft.plugin.general.staffMode.commands.VanishCommand;
+import com.infinitycraft.plugin.general.staffMode.events.GUIs.PlayerMenuEvent;
 import com.infinitycraft.plugin.general.staffMode.events.GUIs.StaffMenuEvent;
 import com.infinitycraft.plugin.general.staffMode.events.MainStaffEvent;
 import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
@@ -94,6 +96,7 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new MainStaffEvent(), this);
         getServer().getPluginManager().registerEvents(new StaffMenuItemEvent(), this);
         getServer().getPluginManager().registerEvents(new StaffMenuEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerMenuEvent(), this);
     }
 
     /**

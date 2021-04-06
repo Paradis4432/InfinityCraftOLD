@@ -1,8 +1,11 @@
 package com.infinitycraft.plugin.general.staffMode.events.GUIs;
 
+import com.infinitycraft.plugin.general.staffMode.GUIs.PlayerMenu;
 import com.infinitycraft.plugin.general.staffMode.GUIs.StaffMenu;
+import com.infinitycraft.plugin.general.storageManager.GetObject;
 import com.infinitycraft.plugin.main;
 import net.wesjd.anvilgui.AnvilGUI;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -116,6 +119,10 @@ public class StaffMenuEvent implements Listener {
                     .title("Please enter search query.")
                     .plugin(main.getInstance())
                     .open((Player) e.getWhoClicked());
+        }
+        else if (e.getInventory().getItem(e.getSlot()).getType() == Material.PLAYER_HEAD && Bukkit.getPlayer(e.getInventory().getItem(e.getSlot()).getItemMeta().getDisplayName()) != null && (boolean) GetObject.getPlayer(e.getWhoClicked().getUniqueId(), "staffMode")) {
+            e.getWhoClicked().closeInventory();
+            PlayerMenu.generate((Player) e.getWhoClicked(), e.getInventory().getItem(e.getSlot()));
         }
     }
 }
