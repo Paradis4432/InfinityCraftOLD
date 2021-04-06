@@ -40,6 +40,7 @@ public class StorageAutomation implements Listener {
         if (GetObject.getPlayer(player.getUniqueId(), "secret") != "") {
             new AnvilGUI.Builder()
                     .onComplete((player1, s) -> {
+                        s = s.replaceAll("\\s", "");
                         TimeProvider timeProvider = new SystemTimeProvider();
                         CodeGenerator codeGenerator = new DefaultCodeGenerator();
                         CodeVerifier verifier = new DefaultCodeVerifier(codeGenerator, timeProvider);
