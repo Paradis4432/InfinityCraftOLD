@@ -80,7 +80,7 @@ public class TwoFactorAuthGen implements CommandExecutor {
             QrData data = new QrData.Builder()
                     .label(player.getName())
                     .secret(secret)
-                    .issuer("InfinityCraft")
+                    .issuer("Minecraft")
                     .algorithm(HashingAlgorithm.SHA1)
                     .digits(6)
                     .period(30)
