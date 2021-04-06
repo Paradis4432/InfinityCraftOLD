@@ -11,17 +11,13 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 
-import java.util.List;
+import java.util.Objects;
 
 public class MainStaffEvent implements Listener {
     @EventHandler
     public void ItemUseEvent(PlayerInteractEvent e) {
         if ((boolean) GetObject.getPlayer(e.getPlayer().getUniqueId(), "staffMode")){
-            if (e.getItem().getType() == Material.WRITTEN_BOOK) {
-                e.setCancelled(false);
-            }else {
-                e.setCancelled(true);
-            }
+            e.setCancelled(true);
         }
     }
     @EventHandler

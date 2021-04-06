@@ -1,5 +1,6 @@
 package com.infinitycraft.plugin;
 
+import com.infinitycraft.plugin.general.authentication.TwoFactorAuthGen;
 import com.infinitycraft.plugin.general.chat.ChatHandler;
 import com.infinitycraft.plugin.general.chat.chatColor.commands.ChatColorChangerCommand;
 import com.infinitycraft.plugin.general.chat.chatColor.events.ChatColorChangerEvent;
@@ -12,8 +13,7 @@ import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
 import com.infinitycraft.plugin.general.staffMode.commands.NickCommand;
 import com.infinitycraft.plugin.general.staffMode.commands.StaffCommand;
 import com.infinitycraft.plugin.general.staffMode.commands.VanishCommand;
-import com.infinitycraft.plugin.general.staffMode.events.GUIs.PlayerMenuEvent;
-import com.infinitycraft.plugin.general.staffMode.events.GUIs.StaffMenuEvent;
+import com.infinitycraft.plugin.general.staffMode.events.GUIs.*;
 import com.infinitycraft.plugin.general.staffMode.events.MainStaffEvent;
 import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
@@ -97,6 +97,9 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new StaffMenuItemEvent(), this);
         getServer().getPluginManager().registerEvents(new StaffMenuEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerMenuEvent(), this);
+        getServer().getPluginManager().registerEvents(new StaffPlayerMenuEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerInfoMenuEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerActionMenuEvent(), this);
     }
 
     /**
@@ -125,6 +128,7 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("staff")).setExecutor(new StaffCommand());
         Objects.requireNonNull(this.getCommand("vanish")).setExecutor(new VanishCommand());
         Objects.requireNonNull(this.getCommand("nick")).setExecutor(new NickCommand());
+        Objects.requireNonNull(this.getCommand("2fa")).setExecutor(new TwoFactorAuthGen());
     }
 
     /**

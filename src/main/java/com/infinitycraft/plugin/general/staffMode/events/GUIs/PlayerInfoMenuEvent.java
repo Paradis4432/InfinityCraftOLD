@@ -21,23 +21,22 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
-
-public class PlayerMenuEvent implements Listener {
+public class PlayerInfoMenuEvent implements Listener {
+    
     @EventHandler
     public void InventoryClickEvent(InventoryClickEvent e) {
         if (e.getInventory().getType() != InventoryType.CREATIVE) {
-            if (e.getView().getTitle().contains("Viewing Player: ")) {
+            if (e.getView().getTitle().contains("Info For: ")) {
                 // Exit
-                if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerMenu.exit.hashCode()) {
+                if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerInfoMenu.exit.hashCode()) {
                     e.getWhoClicked().closeInventory();
                     e.setCancelled(true);
                 }
                 // Inventory See
-                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerMenu.viewInventory.hashCode()) {
+                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerInfoMenu.viewInventory.hashCode()) {
                     String name = "";
-                    name = e.getView().getTitle().substring(e.getView().getTitle().indexOf("Viewing Player: ") + 16);
+                    name = e.getView().getTitle().substring(e.getView().getTitle().indexOf("Info For: ") + 10);
                     e.getWhoClicked().sendMessage(name);
                     Player target = Bukkit.getPlayer(name);
                     PlayerInventory inv = target.getInventory();
@@ -46,9 +45,9 @@ public class PlayerMenuEvent implements Listener {
                     e.setCancelled(true);
                 }
                 // Ender Chest See
-                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerMenu.viewEnderChest.hashCode()) {
+                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerInfoMenu.viewEnderChest.hashCode()) {
                     String name = "";
-                    name = e.getView().getTitle().substring(e.getView().getTitle().indexOf("Viewing Player: ") + 16);
+                    name = e.getView().getTitle().substring(e.getView().getTitle().indexOf("Info For: ") + 10);
                     Player target = Bukkit.getPlayer(name);
                     Inventory inv = target.getEnderChest();
                     e.getWhoClicked().closeInventory();
@@ -56,9 +55,9 @@ public class PlayerMenuEvent implements Listener {
                     e.setCancelled(true);
                 }
                 // Armor View
-                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerMenu.viewArmor.hashCode()) {
+                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerInfoMenu.viewArmor.hashCode()) {
                     String name = "";
-                    name = e.getView().getTitle().substring(e.getView().getTitle().indexOf("Viewing Player: ") + 16);
+                    name = e.getView().getTitle().substring(e.getView().getTitle().indexOf("Info For: ") + 10);
                     Player target = Bukkit.getPlayer(name);
                     Map<ItemStack, Integer> items = new HashMap<>();
                     Integer position = 0;
@@ -73,9 +72,9 @@ public class PlayerMenuEvent implements Listener {
                     e.setCancelled(true);
                 }
                 // Report View
-                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerMenu.viewReports.hashCode()) {
+                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerInfoMenu.viewReports.hashCode()) {
                     String name = "";
-                    name = e.getView().getTitle().substring(e.getView().getTitle().indexOf("Viewing Player: ") + 16);
+                    name = e.getView().getTitle().substring(e.getView().getTitle().indexOf("Info For: ") + 10);
                     Player target = Bukkit.getPlayer(name);
                     String UUID = String.valueOf(target.getUniqueId()).replaceAll("-", "");
                     e.getWhoClicked().sendMessage(ChatColor.GOLD + "Here are the 5 most recent reports:\n");
@@ -96,12 +95,17 @@ public class PlayerMenuEvent implements Listener {
                     e.setCancelled(true);
                     e.getWhoClicked().closeInventory();
                 }
-                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerMenu.viewStats.hashCode()) {
+                // Teleport To
+                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerInfoMenu.teleport.hashCode()) {
+                    String name = "";
+                    name = e.getView().getTitle().substring(e.getView().getTitle().indexOf("Info For: ") + 10);
+                    Player target = Bukkit.getPlayer(name);
                     e.getWhoClicked().closeInventory();
-                    PlayerInfoMenu.generate((Player) e.getWhoClicked(), e.getInventory().getItem(4));
+                    e.getWhoClicked().sendMessage(ChatColor.GOLD + "Teleported to: " + target.getName() + "!");
+                    e.getWhoClicked().teleport(target);
                     e.setCancelled(true);
                 }
-                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerMenu.takeAction.hashCode()) {
+                else if (e.getInventory().getItem(e.getSlot()).hashCode() == PlayerInfoMenu.takeAction.hashCode()) {
                     e.getWhoClicked().closeInventory();
                     PlayerActionMenu.generate((Player) e.getWhoClicked(), e.getInventory().getItem(4));
                     e.setCancelled(true);
