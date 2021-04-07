@@ -1,5 +1,6 @@
 package com.infinitycraft.plugin.general.storageManager;
 
+import com.infinitycraft.plugin.general.authentication.TwoFactorAuthEvent;
 import com.infinitycraft.plugin.main;
 import dev.samstevens.totp.code.CodeGenerator;
 import dev.samstevens.totp.code.CodeVerifier;
@@ -20,6 +21,7 @@ import org.bukkit.event.server.ServerLoadEvent;
 import org.bukkit.inventory.ItemStack;
 
 import java.sql.SQLException;
+import java.util.Collections;
 
 public class StorageAutomation implements Listener {
     /** Completes actions when a player joins
@@ -38,20 +40,20 @@ public class StorageAutomation implements Listener {
         Player player = e.getPlayer();
         // Intercept 2FA
         if (GetObject.getPlayer(player.getUniqueId(), "secret") != "") {
+            TwoFactorAuthEvent.authing.add(player);
             new AnvilGUI.Builder()
                     .onComplete((player1, s) -> {
                         s = s.replaceAll("\\s", "");
                         TimeProvider timeProvider = new SystemTimeProvider();
                         CodeGenerator codeGenerator = new DefaultCodeGenerator();
                         CodeVerifier verifier = new DefaultCodeVerifier(codeGenerator, timeProvider);
-                        Bukkit.getLogger().info(String.valueOf(player.getUniqueId()));
-                        Bukkit.getLogger().info((String) GetObject.getPlayer(player.getUniqueId(), "secret"));
                         boolean successful = verifier.isValidCode((String) GetObject.getPlayer(player.getUniqueId(), "secret"), s);
                         if (!successful) {
                             player.kickPlayer("Your 2FA code was wrong. Please try again or contact support.");
                         }
                         else {
                             player.sendMessage(ChatColor.DARK_GREEN + "Your 2FA code was correct!");
+                            TwoFactorAuthEvent.authing.removeAll(Collections.singleton(player));
                         }
                         return AnvilGUI.Response.close();
                     })

@@ -1,5 +1,6 @@
 package com.infinitycraft.plugin;
 
+import com.infinitycraft.plugin.general.authentication.TwoFactorAuthEvent;
 import com.infinitycraft.plugin.general.authentication.TwoFactorAuthGen;
 import com.infinitycraft.plugin.general.chat.ChatHandler;
 import com.infinitycraft.plugin.general.chat.chatColor.commands.ChatColorChangerCommand;
@@ -100,6 +101,7 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new StaffPlayerMenuEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerInfoMenuEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerActionMenuEvent(), this);
+        getServer().getPluginManager().registerEvents(new TwoFactorAuthEvent(), this);
     }
 
     /**
