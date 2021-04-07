@@ -20,6 +20,6 @@ public class ChatHandler implements Listener {
         if (!suffix.equals("")) {
             suffix = " [" + suffix + "]";
         }
-        e.setFormat(prefix + e.getPlayer().getName() + suffix + ": " + ChatColor.translateAlternateColorCodes('&', chatColor + message));
+        e.setFormat(prefix + e.getPlayer().getDisplayName() + suffix + ": " + ChatColor.translateAlternateColorCodes('&', chatColor + message));
     }
 }

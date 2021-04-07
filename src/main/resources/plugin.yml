@@ -75,6 +75,15 @@ commands:
   staff:
     description: "Enables staff mode"
     usage: /staff
+  vanish:
+    description: "Toggles vanish"
+    usage: /vanish
+  nick:
+    description: "Enables or resets your nick"
+    usage: /nick <name>
+  2fa:
+    description: "Change account security settings related to 2FA"
+    usage: /2fa [test/enable/disable/status]
   custom:
     description: "test command"
     usage: /custom

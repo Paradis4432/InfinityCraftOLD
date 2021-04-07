@@ -4,6 +4,7 @@ import com.infinitycraft.plugin.general.staffMode.items.LauncherItem;
 import com.infinitycraft.plugin.general.staffMode.items.RandomTeleportItem;
 import com.infinitycraft.plugin.general.storageManager.GetObject;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -21,6 +22,7 @@ public class RandomTeleportEvent implements Listener {
             Random random = new Random();
             Player randomPlayer = (Player) list.get(random.nextInt(list.size()));
             e.getPlayer().teleport(randomPlayer);
+            e.getPlayer().sendMessage(ChatColor.GOLD + "Teleported To: " + randomPlayer.getName() + "!");
             e.setCancelled(true);
         }
     }

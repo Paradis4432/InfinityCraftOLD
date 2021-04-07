@@ -1,6 +1,7 @@
-package com.infinitycraft.plugin.general.staffMode.events.items;
+package com.infinitycraft.plugin.general.staffMode.events;
 
 import com.infinitycraft.plugin.general.storageManager.GetObject;
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
@@ -10,7 +11,7 @@ import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 
-import java.util.List;
+import java.util.Objects;
 
 public class MainStaffEvent implements Listener {
     @EventHandler

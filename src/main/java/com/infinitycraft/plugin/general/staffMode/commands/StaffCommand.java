@@ -1,10 +1,7 @@
 package com.infinitycraft.plugin.general.staffMode.commands;
 
 import com.infinitycraft.plugin.general.staffMode.events.items.VanishEvent;
-import com.infinitycraft.plugin.general.staffMode.items.FakeKickItem;
-import com.infinitycraft.plugin.general.staffMode.items.LauncherItem;
-import com.infinitycraft.plugin.general.staffMode.items.RandomTeleportItem;
-import com.infinitycraft.plugin.general.staffMode.items.VanishItem;
+import com.infinitycraft.plugin.general.staffMode.items.*;
 import com.infinitycraft.plugin.general.staffMode.tools.InventorySerializer;
 import com.infinitycraft.plugin.general.storageManager.EditObject;
 import com.infinitycraft.plugin.general.storageManager.GetObject;
@@ -23,7 +20,7 @@ import org.jetbrains.annotations.NotNull;
 import javax.print.attribute.SetOfIntegerSyntax;
 import java.io.IOException;
 
-public class staff implements CommandExecutor {
+public class StaffCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, String[] args) {
@@ -58,6 +55,10 @@ public class staff implements CommandExecutor {
                 VanishEvent.unvanish(player);
                 player.setAllowFlight(false);
                 player.setFlying(false);
+                player.setDisplayName(player.getName());
+                player.setCustomName(player.getName());
+                player.setPlayerListName(player.getName());
+                player.setCustomNameVisible(false);
             }
             else {
                 // Enable Staff
@@ -73,6 +74,8 @@ public class staff implements CommandExecutor {
                 player.getInventory().setItem(0, RandomTeleportItem.randomTeleport);
                 LauncherItem.generate();
                 player.getInventory().setItem(2, LauncherItem.launcher);
+                StaffMenuItem.generate();
+                player.getInventory().setItem(4, StaffMenuItem.staffMenu);
                 FakeKickItem.generate();
                 player.getInventory().setItem(6, FakeKickItem.fakeKick);
                 VanishItem.generate();

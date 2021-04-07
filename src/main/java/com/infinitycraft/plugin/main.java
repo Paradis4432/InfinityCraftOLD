@@ -12,24 +12,13 @@ import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
 import com.infinitycraft.plugin.general.staffMode.commands.staff;
 import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
-import com.infinitycraft.plugin.skyblock.FlyCookieRecipies;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.RecipeChoice;
-import org.bukkit.inventory.ShapedRecipe;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
-import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Random;
-
-import static org.bukkit.Bukkit.getServer;
 
 public final class main extends JavaPlugin {
     /**
@@ -68,7 +57,6 @@ public final class main extends JavaPlugin {
         // Send message
         getServer().getConsoleSender().sendMessage(ChatColor.GREEN + "InfinityCraft Plugin Enabled");
 
-        FlyCookieRecipies.FlyCookieTier1();
     }
 
 
@@ -85,8 +73,6 @@ public final class main extends JavaPlugin {
         }
         // Send message
         getServer().getConsoleSender().sendMessage(ChatColor.RED + "InfinityCraft Plugin Disabled");
-
-
     }
 
     /**
@@ -139,6 +125,4 @@ public final class main extends JavaPlugin {
         BukkitTask flyTime = new FlyTime().runTaskTimer(this, 1200, 1200);
         BukkitTask playTime = new PlayTime().runTaskTimer(this, 1200, 1200);
     }
-
-
 }

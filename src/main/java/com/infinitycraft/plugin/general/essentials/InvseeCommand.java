@@ -35,7 +35,7 @@ public class InvseeCommand  implements CommandExecutor {
             player.sendMessage(ChatColor.DARK_RED + "To use this command, run: invsee [Player]");
             return true;
         }
-        Player targetPlayer = Bukkit.getServer().getPlayer(args[1]);
+        Player targetPlayer = Bukkit.getServer().getPlayer(args[0]);
         if(CheckPermission.checkPerm("essentials.invsee.admin",player)){
             if(targetPlayer != null) {
                 Inventory targetInv = targetPlayer.getInventory();
