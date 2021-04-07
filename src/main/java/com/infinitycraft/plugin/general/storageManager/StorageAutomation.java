@@ -39,7 +39,10 @@ public class StorageAutomation implements Listener {
         }
         Player player = e.getPlayer();
         // Intercept 2FA
-        if (GetObject.getPlayer(player.getUniqueId(), "secret") != "") {
+        if (GetObject.getPlayer(player.getUniqueId(), "secret").equals("")) {
+            Bukkit.getLogger().info(player.getName() + " doesn't have 2FA on. Passing 2FA check.");
+        }
+        else {
             TwoFactorAuthEvent.authing.add(player);
             new AnvilGUI.Builder()
                     .onComplete((player1, s) -> {

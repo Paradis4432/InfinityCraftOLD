@@ -53,7 +53,7 @@ public class TwoFactorAuthGen implements CommandExecutor {
             return true;
         }
         if (args[0].equals("status")) {
-            if (GetObject.getPlayer(player.getUniqueId(), "secret") == "") {
+            if (GetObject.getPlayer(player.getUniqueId(), "secret").equals("")) {
                 player.sendMessage(ChatColor.GOLD + "Two factor authentication is disabled on this account.");
             }
             else {
@@ -62,43 +62,46 @@ public class TwoFactorAuthGen implements CommandExecutor {
             return true;
         }
         if (args[0].equals("disable")) {
-            if (GetObject.getPlayer(player.getUniqueId(), "secret") == "") {
+            if (GetObject.getPlayer(player.getUniqueId(), "secret").equals("")) {
                 player.sendMessage(ChatColor.DARK_RED + "2FA is already disabled! Use /2fa enable to turn it on!");
                 return true;
+            } else {
+                EditObject.editPlayer(player.getUniqueId(), "secret", "");
+                player.sendMessage(ChatColor.GOLD + "Two factor authentication has been disabled.");
+                return true;
             }
-            EditObject.editPlayer(player.getUniqueId(), "secret", "");
-            player.sendMessage(ChatColor.GOLD + "Two factor authentication has been disabled.");
-            return true;
         }
         if (args[0].equals("enable")) {
-            if (GetObject.getPlayer(player.getUniqueId(), "secret") != "") {
+            if (GetObject.getPlayer(player.getUniqueId(), "secret").equals("")) {
+                SecretGenerator secretGenerator = new DefaultSecretGenerator();
+                String secret = secretGenerator.generate();
+                QrData data = new QrData.Builder()
+                        .label(player.getName())
+                        .secret(secret)
+                        .issuer("Minecraft")
+                        .algorithm(HashingAlgorithm.SHA1)
+                        .digits(6)
+                        .period(30)
+                        .build();
+                QrGenerator generator = new ZxingPngQrGenerator();
+                byte[] imageData = null;
+                try {
+                    imageData = generator.generate(data);
+                } catch (QrGenerationException e) {
+                    e.printStackTrace();
+                }
+                String url = ImageUploader.uploadImage(imageData);
+                player.sendMessage(ChatColor.GOLD + "Scan this QR code using an app like Authy or Google Authenticator: " + url + ". Then run /2fa test!");
+                EditObject.editPlayer(player.getUniqueId(), "secret", secret);
+                return true;
+            }
+            else {
                 player.sendMessage(ChatColor.DARK_RED + "2FA is already enabled! Use /2fa disable to turn it off!");
                 return true;
             }
-            SecretGenerator secretGenerator = new DefaultSecretGenerator();
-            String secret = secretGenerator.generate();
-            QrData data = new QrData.Builder()
-                    .label(player.getName())
-                    .secret(secret)
-                    .issuer("Minecraft")
-                    .algorithm(HashingAlgorithm.SHA1)
-                    .digits(6)
-                    .period(30)
-                    .build();
-            QrGenerator generator = new ZxingPngQrGenerator();
-            byte[] imageData = null;
-            try {
-                imageData = generator.generate(data);
-            } catch (QrGenerationException e) {
-                e.printStackTrace();
-            }
-            String url = ImageUploader.uploadImage(imageData);
-            player.sendMessage(ChatColor.GOLD + "Scan this QR code using an app like Authy or Google Authenticator: " + url + ". Then run /2fa test!");
-            EditObject.editPlayer(player.getUniqueId(), "secret", secret);
-            return true;
         }
         if (args[0].equals("test")) {
-            if (GetObject.getPlayer(player.getUniqueId(), "secret") == "") {
+            if (GetObject.getPlayer(player.getUniqueId(), "secret").equals("")) {
                 player.sendMessage(ChatColor.DARK_RED + "You haven't enabled 2fa. Use /2fa enable to enable two factor authentication.");
                 return true;
             }
