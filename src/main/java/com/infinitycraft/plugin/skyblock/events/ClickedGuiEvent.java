@@ -1,5 +1,7 @@
 package com.infinitycraft.plugin.skyblock.events;
 
+import com.infinitycraft.plugin.skyblock.craftsGUIs.RawRabbitTieresMenu;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -11,14 +13,34 @@ public class ClickedGuiEvent implements Listener {
 
     @EventHandler
     public void InvClick(InventoryClickEvent e) {
-        if (e.getView().getTitle().equals("Test GUI")) {
+        if (e.getView().getTitle().equals(ChatColor.GOLD + "List Of All Custom Crafts!")) {
             Player player = (Player) e.getWhoClicked();
             //Determine what they selected and what to do
-            if (Objects.requireNonNull(e.getCurrentItem()).getItemMeta().getDisplayName().equals("test")) {
-                player.closeInventory();
-                player.sendMessage("testing");
+            switch (Objects.requireNonNull(e.getCurrentItem()).getType()) {
+
+                //items
+                case RABBIT:
+                    //player.sendMessage("testing");
+                    break;
+                case MUTTON:
+                    player.sendMessage("testing1");
+                    break;
+                case PORKCHOP:
+                    player.sendMessage("testing2");
+                    break;
+                case  BEEF:
+
+
+                //close menu and default
+                case BARRIER:
+                    player.closeInventory();
+                    break;
+                default:
+                    //player.sendMessage("test");
+                    break;
             }
-            e.setCancelled(true); //So they cant take the items
+            e.setCancelled(true);
+
         }
     }
 }
