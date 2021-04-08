@@ -9,10 +9,14 @@ import com.infinitycraft.plugin.general.chat.affixes.events.PositionSelectorEven
 import com.infinitycraft.plugin.general.essentials.*;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.FlyTime;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
-import com.infinitycraft.plugin.general.staffMode.commands.staff;
+import com.infinitycraft.plugin.general.staffMode.commands.StaffCommand;
+import com.infinitycraft.plugin.general.staffMode.events.MainStaffEvent;
 import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
+import com.infinitycraft.plugin.skyblock.craftsGUIs.CraftsGUI1;
+import com.infinitycraft.plugin.skyblock.events.ClickedGuiEvent;
 import org.bukkit.ChatColor;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
@@ -89,6 +93,9 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new RandomTeleportEvent(), this);
         getServer().getPluginManager().registerEvents(new FakeKickEvent(), this);
         getServer().getPluginManager().registerEvents(new MainStaffEvent(), this);
+
+
+        getServer().getPluginManager().registerEvents(new ClickedGuiEvent(), this);
     }
 
     /**
@@ -114,7 +121,11 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("upvote")).setExecutor(new UpvoteCommand());
         Objects.requireNonNull(this.getCommand("report")).setExecutor(new ReportCommand());
         Objects.requireNonNull(this.getCommand("playtime")).setExecutor(new PlayTimeCommand());
-        Objects.requireNonNull(this.getCommand("staff")).setExecutor(new staff());
+        Objects.requireNonNull(this.getCommand("staff")).setExecutor(new StaffCommand());
+
+
+
+        Objects.requireNonNull(this.getCommand("test")).setExecutor(new CraftsGUI1());
     }
 
     /**
