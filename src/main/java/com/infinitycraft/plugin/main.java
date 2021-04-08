@@ -1,5 +1,7 @@
 package com.infinitycraft.plugin;
 
+import com.infinitycraft.plugin.general.authentication.TwoFactorAuthEvent;
+import com.infinitycraft.plugin.general.authentication.TwoFactorAuthGen;
 import com.infinitycraft.plugin.general.chat.ChatHandler;
 import com.infinitycraft.plugin.general.chat.chatColor.commands.ChatColorChangerCommand;
 import com.infinitycraft.plugin.general.chat.chatColor.events.ChatColorChangerEvent;
@@ -9,20 +11,20 @@ import com.infinitycraft.plugin.general.chat.affixes.events.PositionSelectorEven
 import com.infinitycraft.plugin.general.essentials.*;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.FlyTime;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
+import com.infinitycraft.plugin.general.staffMode.commands.NickCommand;
 import com.infinitycraft.plugin.general.staffMode.commands.StaffCommand;
+import com.infinitycraft.plugin.general.staffMode.commands.VanishCommand;
+import com.infinitycraft.plugin.general.staffMode.events.GUIs.*;
 import com.infinitycraft.plugin.general.staffMode.events.MainStaffEvent;
 import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
-import com.infinitycraft.plugin.skyblock.craftsGUIs.CraftsGUI1;
-import com.infinitycraft.plugin.skyblock.events.ClickedGuiEvent;
 import org.bukkit.ChatColor;
-import org.bukkit.inventory.Inventory;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
 
 import java.util.Objects;
-import java.util.Random;
 
 public final class main extends JavaPlugin {
     /**
@@ -93,9 +95,13 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new RandomTeleportEvent(), this);
         getServer().getPluginManager().registerEvents(new FakeKickEvent(), this);
         getServer().getPluginManager().registerEvents(new MainStaffEvent(), this);
-
-
-        getServer().getPluginManager().registerEvents(new ClickedGuiEvent(), this);
+        getServer().getPluginManager().registerEvents(new StaffMenuItemEvent(), this);
+        getServer().getPluginManager().registerEvents(new StaffMenuEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerMenuEvent(), this);
+        getServer().getPluginManager().registerEvents(new StaffPlayerMenuEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerInfoMenuEvent(), this);
+        getServer().getPluginManager().registerEvents(new PlayerActionMenuEvent(), this);
+        getServer().getPluginManager().registerEvents(new TwoFactorAuthEvent(), this);
     }
 
     /**
@@ -122,10 +128,9 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("report")).setExecutor(new ReportCommand());
         Objects.requireNonNull(this.getCommand("playtime")).setExecutor(new PlayTimeCommand());
         Objects.requireNonNull(this.getCommand("staff")).setExecutor(new StaffCommand());
-
-
-
-        Objects.requireNonNull(this.getCommand("test")).setExecutor(new CraftsGUI1());
+        Objects.requireNonNull(this.getCommand("vanish")).setExecutor(new VanishCommand());
+        Objects.requireNonNull(this.getCommand("nick")).setExecutor(new NickCommand());
+        Objects.requireNonNull(this.getCommand("2fa")).setExecutor(new TwoFactorAuthGen());
     }
 
     /**
