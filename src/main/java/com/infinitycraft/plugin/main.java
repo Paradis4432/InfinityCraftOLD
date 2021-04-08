@@ -18,6 +18,8 @@ import com.infinitycraft.plugin.general.staffMode.events.GUIs.*;
 import com.infinitycraft.plugin.general.staffMode.events.MainStaffEvent;
 import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
+import com.infinitycraft.plugin.skyblock.craftsGUIs.CraftsGUI1;
+import com.infinitycraft.plugin.skyblock.events.ClickedGuiEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -102,6 +104,7 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerInfoMenuEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerActionMenuEvent(), this);
         getServer().getPluginManager().registerEvents(new TwoFactorAuthEvent(), this);
+        getServer().getPluginManager().registerEvents(new ClickedGuiEvent(), this);
     }
 
     /**
@@ -131,6 +134,8 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("vanish")).setExecutor(new VanishCommand());
         Objects.requireNonNull(this.getCommand("nick")).setExecutor(new NickCommand());
         Objects.requireNonNull(this.getCommand("2fa")).setExecutor(new TwoFactorAuthGen());
+        Objects.requireNonNull(this.getCommand("crafts")).setExecutor(new CraftsGUI1());
+
     }
 
     /**

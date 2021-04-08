@@ -84,6 +84,6 @@ commands:
   2fa:
     description: "Change account security settings related to 2FA"
     usage: /2fa [test/enable/disable/status]
-  test:
-    description: "test command"
-    usage: /test
+  crafts:
+    description: "Opens a GUI showing the crafts and how to make them"
+    usage: /crafts
