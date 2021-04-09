@@ -6,22 +6,17 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 import static com.infinitycraft.plugin.general.tools.items.ItemCreator.createItem;
 
-public class RawRabbitTierGUI {
-
-    //open a gui with all 12 tiers of the rabbit
-    //add a listener that checks what tier the player presses
-    //open RabbitTier[num] using player.performCommand("");
+public class BlazeRodTierGUI {
 
     public void ShowTiers(Player player){
 
-        Inventory inv = Bukkit.createInventory(null,36, ChatColor.GOLD + "All Rabbits Tiers!");
+        Inventory inv = Bukkit.createInventory(null,36, ChatColor.GOLD + "All Blaze Tiers!");
 
         //create items
-        Material mat = Material.RABBIT;
+        Material mat = Material.BLAZE_ROD;
 
         ItemStack tier1 = createItem(mat, 1, "Tier 1"," ");
         ItemStack tier2 = createItem(mat, 1, "Tier 2"," ");
@@ -51,6 +46,8 @@ public class RawRabbitTierGUI {
         inv.setItem(22,tier10);
         inv.setItem(23,tier11);
         inv.setItem(24,tier12);
+
+
 
         player.openInventory(inv);
 

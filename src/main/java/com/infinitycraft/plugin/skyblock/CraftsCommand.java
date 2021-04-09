@@ -1,7 +1,6 @@
 package com.infinitycraft.plugin.skyblock;
 
-import com.infinitycraft.plugin.skyblock.CraftsGUI.CraftsCommandItemArg.RawMuttonTierGUI;
-import com.infinitycraft.plugin.skyblock.CraftsGUI.CraftsCommandItemArg.RawRabbitTierGUI;
+import com.infinitycraft.plugin.skyblock.CraftsGUI.CraftsCommandItemArg.*;
 import com.infinitycraft.plugin.skyblock.CraftsGUI.CraftsCommandNoArgs;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -33,15 +32,63 @@ public class CraftsCommand implements CommandExecutor {
 
         if(args.length == 1){
             switch (args[0]){
-                case "Rabbit":
                 case "rabbit":
                     new RawRabbitTierGUI().ShowTiers(player);
                     break;
-                case "Mutton":
                 case "mutton":
                     new RawMuttonTierGUI().ShowTiers(player);
                     break;
-                    // add all the other items
+                case "porkchop":
+                    new RawPorckchopTierGUI().ShowTiers(player);
+                    break;
+                case "beef":
+                    new RawBeefTierGUI().ShowTiers(player);
+                    break;
+                case "spider":
+                    new SpiderEyeTierGUI().ShowTiers(player);
+                    break;
+                case "string":
+                    new StringTierGUI().ShowTiers(player);
+                    break;
+                case "coal":
+                    new CoalTierGUI().ShowTiers(player);
+                    break;
+                case "stick":
+                    new StickTierGUI().ShowTiers(player);
+                    break;
+                case "bone":
+                    new BoneTierGUI().ShowTiers(player);
+                    break;
+                case "slimeball":
+                    new SlimeBallTierGUI().ShowTiers(player);
+                    break;
+                case "gold":
+                    new GoldIngotTierGUI().ShowTiers(player);
+                    break;
+                case "redstone":
+                    new RedstoneTierGUI().ShowTiers(player);
+                    break;
+                case "gunpowder":
+                    new GunpowderTierGUI().ShowTiers(player);
+                    break;
+                case "blaze":
+                    new BlazeRodTierGUI().ShowTiers(player);
+                    break;
+                case "emerald":
+                    new EmeraldTierGUI().ShowTiers(player);
+                    break;
+                case "iron":
+                    new IronIngotTierGUI().ShowTiers(player);
+                    break;
+                case "ender":
+                    new EnderPearlTierGUI().ShowTiers(player);
+                    break;
+                case "diamond":
+                    new DiamondTierGUI().ShowTiers(player);
+                    break;
+                default:
+                    break;
+
             }
 
         }

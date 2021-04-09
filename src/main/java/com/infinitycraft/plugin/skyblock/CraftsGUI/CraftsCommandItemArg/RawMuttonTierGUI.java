@@ -8,72 +8,36 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import static com.infinitycraft.plugin.general.tools.items.ItemCreator.createItem;
+
 public class RawMuttonTierGUI {
 
     public void ShowTiers(Player player){
 
+
+
         Inventory inv = Bukkit.createInventory(null,36, ChatColor.GOLD + "All Mutton Tiers!");
 
+
         //create items
-        ItemStack tier1 = new ItemStack(Material.MUTTON);
-        ItemMeta tier1meta = tier1.getItemMeta();
-        tier1meta.setDisplayName(ChatColor.GOLD + "Tier 1");
-        tier1.setItemMeta(tier1meta);
 
-        ItemStack tier2 = new ItemStack(Material.MUTTON);
-        ItemMeta tier2meta = tier2.getItemMeta();
-        tier2meta.setDisplayName(ChatColor.GOLD + "Tier 2");
-        tier2.setItemMeta(tier2meta);
+        Material mat = Material.MUTTON;
 
-        ItemStack tier3 = new ItemStack(Material.MUTTON);
-        ItemMeta tier3meta = tier3.getItemMeta();
-        tier3meta.setDisplayName(ChatColor.GOLD + "Tier 3");
-        tier3.setItemMeta(tier3meta);
+        ItemStack tier1 = createItem(mat, 1, "Tier 1"," ");
+        ItemStack tier2 = createItem(mat, 1, "Tier 2"," ");
+        ItemStack tier3 = createItem(mat, 1, "Tier 3"," ");
+        ItemStack tier4 = createItem(mat, 1, "Tier 4"," ");
+        ItemStack tier5 = createItem(mat, 1, "Tier 5"," ");
+        ItemStack tier6 = createItem(mat, 1, "Tier 6"," ");
+        ItemStack tier7 = createItem(mat, 1, "Tier 7"," ");
+        ItemStack tier8 = createItem(mat, 1, "Tier 8"," ");
+        ItemStack tier9 = createItem(mat, 1, "Tier 9"," ");
+        ItemStack tier10 = createItem(mat, 1, "Tier 10"," ");
+        ItemStack tier11 = createItem(mat, 1, "Tier 11"," ");
+        ItemStack tier12 = createItem(mat, 1, "Tier 12"," ");
 
-        ItemStack tier4 = new ItemStack(Material.MUTTON);
-        ItemMeta tier4meta = tier4.getItemMeta();
-        tier4meta.setDisplayName(ChatColor.GOLD + "Tier 4");
-        tier4.setItemMeta(tier4meta);
-
-        ItemStack tier5 = new ItemStack(Material.MUTTON);
-        ItemMeta tier5meta = tier5.getItemMeta();
-        tier5meta.setDisplayName(ChatColor.GOLD + "Tier 5");
-        tier5.setItemMeta(tier5meta);
-
-        ItemStack tier6 = new ItemStack(Material.MUTTON);
-        ItemMeta tier6meta = tier6.getItemMeta();
-        tier6meta.setDisplayName(ChatColor.GOLD + "Tier 6");
-        tier6.setItemMeta(tier6meta);
-
-        ItemStack tier7 = new ItemStack(Material.MUTTON);
-        ItemMeta tier7meta = tier7.getItemMeta();
-        tier7meta.setDisplayName(ChatColor.GOLD + "Tier 7");
-        tier7.setItemMeta(tier7meta);
-
-        ItemStack tier8 = new ItemStack(Material.MUTTON);
-        ItemMeta tier8meta = tier8.getItemMeta();
-        tier8meta.setDisplayName(ChatColor.GOLD + "Tier 8");
-        tier8.setItemMeta(tier8meta);
-
-        ItemStack tier9 = new ItemStack(Material.MUTTON);
-        ItemMeta tier9meta = tier9.getItemMeta();
-        tier9meta.setDisplayName(ChatColor.GOLD + "Tier 9");
-        tier9.setItemMeta(tier9meta);
-
-        ItemStack tier10 = new ItemStack(Material.MUTTON);
-        ItemMeta tier10meta = tier10.getItemMeta();
-        tier10meta.setDisplayName(ChatColor.GOLD + "Tier 10");
-        tier10.setItemMeta(tier10meta);
-
-        ItemStack tier11 = new ItemStack(Material.MUTTON);
-        ItemMeta tier11meta = tier11.getItemMeta();
-        tier11meta.setDisplayName(ChatColor.GOLD + "Tier 11");
-        tier11.setItemMeta(tier11meta);
-
-        ItemStack tier12 = new ItemStack(Material.MUTTON);
-        ItemMeta tier12meta = tier12.getItemMeta();
-        tier12meta.setDisplayName(ChatColor.GOLD + "Tier 12");
-        tier12.setItemMeta(tier12meta);
+        ItemStack close = createItem(Material.BARRIER, 1, "Close", " ");
+        inv.setItem(31,close);
 
         inv.setItem(10,tier1);
         inv.setItem(11,tier2);

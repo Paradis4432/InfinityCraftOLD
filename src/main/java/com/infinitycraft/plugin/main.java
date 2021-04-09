@@ -20,10 +20,8 @@ import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
 import com.infinitycraft.plugin.skyblock.CraftsCommand;
 import com.infinitycraft.plugin.skyblock.CraftsGUI.EventsListener.CraftsCommandNoArgsListener;
-import com.infinitycraft.plugin.skyblock.CraftsGUI.EventsListener.RawMuttnTierGUIListener;
-import com.infinitycraft.plugin.skyblock.CraftsGUI.EventsListener.RawRabbitTierGUIListener;
+import com.infinitycraft.plugin.skyblock.CraftsGUI.EventsListener.TierGUIListener;
 import org.bukkit.ChatColor;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
 import org.bukkit.scheduler.BukkitTask;
@@ -107,8 +105,7 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerActionMenuEvent(), this);
         getServer().getPluginManager().registerEvents(new TwoFactorAuthEvent(), this);
         getServer().getPluginManager().registerEvents(new CraftsCommandNoArgsListener(), this);
-        getServer().getPluginManager().registerEvents(new RawMuttnTierGUIListener(), this);
-        getServer().getPluginManager().registerEvents(new RawRabbitTierGUIListener(), this);
+        getServer().getPluginManager().registerEvents(new TierGUIListener(), this);
     }
 
     /**
