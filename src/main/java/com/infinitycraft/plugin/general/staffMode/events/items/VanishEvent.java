@@ -4,6 +4,7 @@ import com.infinitycraft.plugin.general.staffMode.items.LauncherItem;
 import com.infinitycraft.plugin.general.staffMode.items.VanishItem;
 import com.infinitycraft.plugin.general.storageManager.EditObject;
 import com.infinitycraft.plugin.general.storageManager.GetObject;
+import com.infinitycraft.plugin.main;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -32,7 +33,7 @@ public class VanishEvent implements Listener {
     public static void vanish(Player player) {
         for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
             if (pl == player) {
-                pl.hidePlayer(player);
+                pl.hidePlayer(main.getInstance(), player);
                 pl.sendMessage(ChatColor.YELLOW + player.getName() + " left the game.");
             }
         }
@@ -42,7 +43,7 @@ public class VanishEvent implements Listener {
     public static void unvanish(Player player) {
         for (Player pl : Bukkit.getServer().getOnlinePlayers()) {
             if (pl == player){
-                pl.showPlayer(player);
+                pl.showPlayer(main.getInstance(), player);
                 pl.sendMessage(ChatColor.YELLOW + player.getName() + " joined the game.");
             }
         }

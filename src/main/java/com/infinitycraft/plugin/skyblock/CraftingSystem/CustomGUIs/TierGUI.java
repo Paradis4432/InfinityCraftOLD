@@ -1,5 +1,6 @@
-package com.infinitycraft.plugin.skyblock.CraftsGUI.CraftsCommandItemArg;
+package com.infinitycraft.plugin.skyblock.CraftingSystem.CustomGUIs;
 
+import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -9,14 +10,11 @@ import org.bukkit.inventory.ItemStack;
 
 import static com.infinitycraft.plugin.general.tools.items.ItemCreator.createItem;
 
-public class GoldIngotTierGUI {
+public class TierGUI {
 
-    public void ShowTiers(Player player){
+    public void ShowTiers(Player player, Material mat){
 
-        Inventory inv = Bukkit.createInventory(null,36, ChatColor.GOLD + "All Gold Tiers!");
-
-        //create items
-        Material mat = Material.GOLD_INGOT;
+        Inventory inv = Bukkit.createInventory(null,36, ChatColor.GOLD + "All " + WordUtils.capitalize( mat.toString().replaceAll("_", "")) + " Tiers!");
 
         ItemStack tier1 = createItem(mat, 1, "Tier 1"," ");
         ItemStack tier2 = createItem(mat, 1, "Tier 2"," ");

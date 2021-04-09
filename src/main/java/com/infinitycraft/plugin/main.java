@@ -11,6 +11,7 @@ import com.infinitycraft.plugin.general.chat.affixes.events.PositionSelectorEven
 import com.infinitycraft.plugin.general.essentials.*;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.FlyTime;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
+import com.infinitycraft.plugin.general.settings.VisibilityCommand;
 import com.infinitycraft.plugin.general.staffMode.commands.NickCommand;
 import com.infinitycraft.plugin.general.staffMode.commands.StaffCommand;
 import com.infinitycraft.plugin.general.staffMode.commands.VanishCommand;
@@ -18,9 +19,9 @@ import com.infinitycraft.plugin.general.staffMode.events.GUIs.*;
 import com.infinitycraft.plugin.general.staffMode.events.MainStaffEvent;
 import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
-import com.infinitycraft.plugin.skyblock.CraftsCommand;
-import com.infinitycraft.plugin.skyblock.CraftsGUI.EventsListener.CraftsCommandNoArgsListener;
-import com.infinitycraft.plugin.skyblock.CraftsGUI.EventsListener.TierGUIListener;
+import com.infinitycraft.plugin.skyblock.CraftingSystem.Commands.CraftsCommand;
+import com.infinitycraft.plugin.skyblock.CraftingSystem.Events.CraftSelectorEvents;
+import com.infinitycraft.plugin.skyblock.CraftingSystem.Events.TierGUIEvents;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -104,8 +105,8 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerInfoMenuEvent(), this);
         getServer().getPluginManager().registerEvents(new PlayerActionMenuEvent(), this);
         getServer().getPluginManager().registerEvents(new TwoFactorAuthEvent(), this);
-        getServer().getPluginManager().registerEvents(new CraftsCommandNoArgsListener(), this);
-        getServer().getPluginManager().registerEvents(new TierGUIListener(), this);
+        getServer().getPluginManager().registerEvents(new CraftSelectorEvents(), this);
+        getServer().getPluginManager().registerEvents(new TierGUIEvents(), this);
     }
 
     /**
@@ -136,6 +137,7 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("nick")).setExecutor(new NickCommand());
         Objects.requireNonNull(this.getCommand("2fa")).setExecutor(new TwoFactorAuthGen());
         Objects.requireNonNull(this.getCommand("crafts")).setExecutor(new CraftsCommand());
+        Objects.requireNonNull(this.getCommand("visibility")).setExecutor(new VisibilityCommand());
 
     }
 

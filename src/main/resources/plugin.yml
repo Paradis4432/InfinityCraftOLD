@@ -87,3 +87,6 @@ commands:
   crafts:
     description: "Opens a GUI showing the crafts and how to make them"
     usage: /crafts
+  visibility:
+    description: "Toggles the visibility of other players"
+    usage: /visibility

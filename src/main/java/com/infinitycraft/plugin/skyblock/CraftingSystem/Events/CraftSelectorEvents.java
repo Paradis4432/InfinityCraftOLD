@@ -1,4 +1,4 @@
-package com.infinitycraft.plugin.skyblock.CraftsGUI.EventsListener;
+package com.infinitycraft.plugin.skyblock.CraftingSystem.Events;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -8,7 +8,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 
 import java.util.Objects;
 
-public class CraftsCommandNoArgsListener implements Listener {
+public class CraftSelectorEvents implements Listener {
 
     @EventHandler
     public void InvClick(InventoryClickEvent e) {
@@ -16,9 +16,7 @@ public class CraftsCommandNoArgsListener implements Listener {
             Player player = (Player) e.getWhoClicked();
             //Determine what they selected and what to do
             if(e.getCurrentItem() != null){
-
                 switch (Objects.requireNonNull(e.getCurrentItem()).getType()) {
-
                     //items
                     case RABBIT:
                         player.closeInventory();

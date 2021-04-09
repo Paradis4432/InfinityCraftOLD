@@ -1,4 +1,4 @@
-package com.infinitycraft.plugin.skyblock.CraftsGUI;
+package com.infinitycraft.plugin.skyblock.CraftingSystem.CustomGUIs;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -8,7 +8,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class CraftsCommandNoArgs {
+public class CraftGUI {
 
     // show crafts gui
 
