@@ -1,4 +1,4 @@
-package com.infinitycraft.plugin.skyblock.CraftingSystem.Events;
+package com.infinitycraft.plugin.skyblock.craftingSystem.events;
 
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

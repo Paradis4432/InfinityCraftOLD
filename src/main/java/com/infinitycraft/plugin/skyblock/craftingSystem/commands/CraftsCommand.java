@@ -1,6 +1,6 @@
-package com.infinitycraft.plugin.skyblock.CraftingSystem.Commands;
+package com.infinitycraft.plugin.skyblock.craftingSystem.commands;
 
-import com.infinitycraft.plugin.skyblock.CraftingSystem.CustomGUIs.CraftGUI;
+import com.infinitycraft.plugin.skyblock.craftingSystem.customGUIs.CraftGUI;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

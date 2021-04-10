@@ -1,4 +1,4 @@
-package com.infinitycraft.plugin.skyblock.CraftingSystem.CustomGUIs;
+package com.infinitycraft.plugin.skyblock.craftingSystem.customGUIs;
 
 import org.apache.commons.lang.WordUtils;
 import org.bukkit.Bukkit;
