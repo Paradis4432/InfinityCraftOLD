@@ -24,7 +24,9 @@ public class BetterPearls implements Listener {
     @EventHandler
     public void onTeleport(PlayerTeleportEvent e) {
         if(e.getCause().equals(PlayerTeleportEvent.TeleportCause.ENDER_PEARL)) {
-            e.getPlayer().teleport(e.getPlayer().getLocation().add(0, 1, 0));
+            if (!e.getPlayer().isInsideVehicle()) {
+                e.getPlayer().teleport(e.getPlayer().getLocation().add(0, 1, 0));
+            }
             e.setCancelled(true);
         }
     }
