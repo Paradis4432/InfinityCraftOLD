@@ -22,6 +22,8 @@ import com.infinitycraft.plugin.general.storageManager.*;
 import com.infinitycraft.plugin.skyblock.CraftingSystem.Commands.CraftsCommand;
 import com.infinitycraft.plugin.skyblock.CraftingSystem.Events.CraftSelectorEvents;
 import com.infinitycraft.plugin.skyblock.CraftingSystem.Events.TierGUIEvents;
+import com.infinitycraft.plugin.skyblock.IslandSystem.commands.IslandCommand;
+import com.infinitycraft.plugin.skyblock.IslandSystem.tools.Island;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -138,6 +140,7 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("2fa")).setExecutor(new TwoFactorAuthGen());
         Objects.requireNonNull(this.getCommand("crafts")).setExecutor(new CraftsCommand());
         Objects.requireNonNull(this.getCommand("visibility")).setExecutor(new VisibilityCommand());
+        Objects.requireNonNull(this.getCommand("is")).setExecutor(new IslandCommand());
 
     }
 

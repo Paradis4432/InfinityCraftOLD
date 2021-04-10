@@ -90,3 +90,7 @@ commands:
   visibility:
     description: "Toggles the visibility of other players"
     usage: /visibility
+  is:
+    description: "Teleport/Creates/Deletes your island!"
+    usage: /is <delete>
+    aliases: [island]
