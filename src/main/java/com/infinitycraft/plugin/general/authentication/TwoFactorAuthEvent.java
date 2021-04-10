@@ -54,10 +54,4 @@ public class TwoFactorAuthEvent implements Listener {
             e.setCancelled(true);
         }
     }
-    @EventHandler
-    public void PlayerAttemptPickupItemEvent(PlayerAttemptPickupItemEvent e) {
-        if (authing.contains(e.getPlayer())){
-            e.setCancelled(true);
-        }
-    }
 }

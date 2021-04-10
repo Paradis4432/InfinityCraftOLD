@@ -11,6 +11,7 @@ import com.infinitycraft.plugin.general.chat.affixes.events.PositionSelectorEven
 import com.infinitycraft.plugin.general.essentials.*;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.FlyTime;
 import com.infinitycraft.plugin.general.essentials.automatedEvents.PlayTime;
+import com.infinitycraft.plugin.general.fun.BetterPearls;
 import com.infinitycraft.plugin.general.settings.VisibilityCommand;
 import com.infinitycraft.plugin.general.staffMode.commands.NickCommand;
 import com.infinitycraft.plugin.general.staffMode.commands.StaffCommand;
@@ -108,6 +109,7 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new TwoFactorAuthEvent(), this);
         getServer().getPluginManager().registerEvents(new CraftSelectorEvents(), this);
         getServer().getPluginManager().registerEvents(new TierGUIEvents(), this);
+        getServer().getPluginManager().registerEvents(new BetterPearls(), this);
     }
 
     /**

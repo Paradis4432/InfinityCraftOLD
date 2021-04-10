@@ -1,6 +1,7 @@
 package com.infinitycraft.plugin.skyblock.IslandSystem.commands;
 
 import com.infinitycraft.plugin.skyblock.IslandSystem.tools.Island;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,7 +20,6 @@ public class IslandCommand implements CommandExecutor {
         if (args.length == 0) {
             if (!Island.check(player)) {
                 Island.create(player);
-                player.sendMessage(ChatColor.GREEN + "Successfully created an island for you!");
             }
             Island.teleport(player);
             return true;
@@ -27,7 +27,6 @@ public class IslandCommand implements CommandExecutor {
         else if (args.length == 1) {
             if (args[0].equals("delete")) {
                 Island.delete(player);
-                player.sendMessage(ChatColor.GREEN + "Successfully deleted your island!");
                 return true;
             }
         }

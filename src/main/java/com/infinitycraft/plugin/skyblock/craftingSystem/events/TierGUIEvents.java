@@ -16,7 +16,6 @@ public class TierGUIEvents implements Listener {
             String[] type = title.split(" ");
 
             Player player = (Player) e.getWhoClicked();
-            player.sendMessage(type[0]);
 
             if (e.getView().getTitle().equals(ChatColor.GOLD + "All " + type[0] + " Tiers!")) {
 
