@@ -33,6 +33,10 @@ public class DatabaseManager {
         tables.put("reports", "create table reports ( time timestamp default current_timestamp() not null, player binary(16) not null, target binary(16) not null );");
         // Upvotes table
         tables.put("upvotes", "create table upvotes ( time timestamp default current_timestamp() not null, player binary(16) not null, target binary(16) not null );");
+        // Orders Table
+        tables.put("orders", "create table orders ( player binary(16) not null, item text not null, amount int not null, time timestamp default current_timestamp not null, action boolean not null);");
+        // Market Table
+        tables.put("market", "create table market (item varchar(255) not null, stock int not null, price int not null, desiredPrice int not null, desiredStock int not null, constraint market_pk primary key (item));");
         // Return Map
         return tables;
     }
@@ -98,6 +102,28 @@ public class DatabaseManager {
         columns.put(upvotePlayer, "alter table upvotes add player binary(16) not null");
         ArrayList<String> upvoteTarget = new ArrayList<>(Arrays.asList("upvotes", "target"));
         columns.put(upvoteTarget, "alter table upvotes add target binary(16) not null");
+        // Orders Table
+        ArrayList<String> orderPlayer = new ArrayList<>(Arrays.asList("orders", "player"));
+        columns.put(orderPlayer, "alter table orders add player binary(16) not null");
+        ArrayList<String> orderItem = new ArrayList<>(Arrays.asList("orders", "item"));
+        columns.put(orderItem, "alter table orders add item text not null");
+        ArrayList<String> orderQuantity = new ArrayList<>(Arrays.asList("orders", "quantity"));
+        columns.put(orderQuantity, "alter table orders add quantity int not null");
+        ArrayList<String> orderTime = new ArrayList<>(Arrays.asList("orders", "time"));
+        columns.put(orderTime, "alter table orders add time timestamp default current_timestamp() not null");
+        ArrayList<String> orderAction = new ArrayList<>(Arrays.asList("orders", "action"));
+        columns.put(orderAction, "alter table orders add action boolean not null");
+        // Market Table
+        ArrayList<String> marketItem = new ArrayList<>(Arrays.asList("market", "item"));
+        columns.put(marketItem, "alter table market add item varchar(255) not null");
+        ArrayList<String> marketStock = new ArrayList<>(Arrays.asList("market", "stock"));
+        columns.put(marketStock, "alter table market add stock int not null");
+        ArrayList<String> marketPrice = new ArrayList<>(Arrays.asList("market", "price"));
+        columns.put(marketPrice, "alter table market add price int not null");
+        ArrayList<String> marketDesiredPrice = new ArrayList<>(Arrays.asList("market", "desiredPrice"));
+        columns.put(marketDesiredPrice, "alter table market add desiredPrice int not null");
+        ArrayList<String> marketDesiredStock = new ArrayList<>(Arrays.asList("market", "desiredStock"));
+        columns.put(marketDesiredStock, "alter table market add desiredStock int not null");
         // Return Map
         return columns;
     }
