@@ -24,6 +24,7 @@ import com.infinitycraft.plugin.skyblock.craftingSystem.commands.CraftsCommand;
 import com.infinitycraft.plugin.skyblock.craftingSystem.events.CraftSelectorEvents;
 import com.infinitycraft.plugin.skyblock.craftingSystem.events.TierGUIEvents;
 import com.infinitycraft.plugin.skyblock.IslandSystem.commands.IslandCommand;
+import com.infinitycraft.plugin.skyblock.market.MainGUI;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitScheduler;
@@ -142,6 +143,7 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("crafts")).setExecutor(new CraftsCommand());
         Objects.requireNonNull(this.getCommand("visibility")).setExecutor(new VisibilityCommand());
         Objects.requireNonNull(this.getCommand("is")).setExecutor(new IslandCommand());
+        Objects.requireNonNull(this.getCommand("market")).setExecutor(new MainGUI());
 
     }
 

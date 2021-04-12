@@ -94,3 +94,7 @@ commands:
     description: "Teleport/Creates/Deletes your island!"
     usage: /is <delete>
     aliases: [island]
+  market:
+    description: "Opens the market"
+    usage: /market
+    aliases: [shop]
