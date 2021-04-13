@@ -24,6 +24,7 @@ import com.infinitycraft.plugin.skyblock.craftingSystem.commands.CraftsCommand;
 import com.infinitycraft.plugin.skyblock.craftingSystem.events.CraftSelectorEvents;
 import com.infinitycraft.plugin.skyblock.craftingSystem.events.TierGUIEvents;
 import com.infinitycraft.plugin.skyblock.IslandSystem.commands.IslandCommand;
+import com.infinitycraft.plugin.skyblock.market.AddItemsToMarketCommand;
 import com.infinitycraft.plugin.skyblock.market.MainGUI;
 import org.bukkit.ChatColor;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -131,7 +132,7 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("baltop")).setExecutor(new BalTopCommand());
         Objects.requireNonNull(this.getCommand("gm")).setExecutor(new GamemodeCommand());
         Objects.requireNonNull(this.getCommand("full")).setExecutor(new FullCommand());
-        Objects.requireNonNull(this.getCommand("GetPos")).setExecutor(new GetPos());
+        Objects.requireNonNull(this.getCommand("GetPos")).setExecutor(new GetPosCommand());
         Objects.requireNonNull(this.getCommand("broadcast")).setExecutor(new BroadcastCommand());
         Objects.requireNonNull(this.getCommand("upvote")).setExecutor(new UpvoteCommand());
         Objects.requireNonNull(this.getCommand("report")).setExecutor(new ReportCommand());
@@ -144,6 +145,8 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("visibility")).setExecutor(new VisibilityCommand());
         Objects.requireNonNull(this.getCommand("is")).setExecutor(new IslandCommand());
         Objects.requireNonNull(this.getCommand("market")).setExecutor(new MainGUI());
+        Objects.requireNonNull(this.getCommand("add")).setExecutor(new AddItemsToMarketCommand());
+        Objects.requireNonNull(this.getCommand("rename")).setExecutor(new RenameCommand());
 
     }
 

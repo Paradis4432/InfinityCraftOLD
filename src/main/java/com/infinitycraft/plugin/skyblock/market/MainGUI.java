@@ -29,10 +29,10 @@ public class MainGUI implements CommandExecutor {
 
         MarketRequestInformationFromSQL market = new MarketRequestInformationFromSQL();
 
-        market.getPriceItemBlaze();
+        items = market.getPriceItemBlaze();
 
-        for(int i = 0 ; i < items.size() ; i++){
-            Bukkit.getLogger().info(String.valueOf(items.get(i)));
+        for (Object item : items) {
+            Bukkit.getLogger().info(String.valueOf(item));
         }
 
         //player.openInventory(marketGUI);

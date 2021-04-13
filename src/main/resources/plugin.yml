@@ -58,7 +58,7 @@ commands:
     usage: /full [Player]
   getpos:
     description: "Gets the possition and the world of a target"
-    usage: /getposs [Player]
+    usage: /getpos [Player]
   broadcast:
     description: "Sends a message to all players"
     usage: /broadcast [Message]
@@ -98,3 +98,9 @@ commands:
     description: "Opens the market"
     usage: /market
     aliases: [shop]
+  add:
+    description: "Only for admin player, add items to market"
+    usage: /add [DesiredPrice] [DesiredStock]
+  rename:
+    description: "Renames an item"
+    usage: /rename [name]
