@@ -1,23 +1,20 @@
 package com.infinitycraft.plugin.general.staffMode.commands;
 
+import com.infinitycraft.plugin.general.staffMode.events.MainStaffEvent;
 import com.infinitycraft.plugin.general.staffMode.events.items.VanishEvent;
 import com.infinitycraft.plugin.general.staffMode.items.*;
 import com.infinitycraft.plugin.general.staffMode.tools.InventorySerializer;
 import com.infinitycraft.plugin.general.storageManager.EditObject;
 import com.infinitycraft.plugin.general.storageManager.GetObject;
 import com.infinitycraft.plugin.general.tools.permissions.CheckPermission;
-import com.infinitycraft.plugin.main;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 
-import javax.print.attribute.SetOfIntegerSyntax;
 import java.io.IOException;
 
 public class StaffCommand implements CommandExecutor {
@@ -59,6 +56,8 @@ public class StaffCommand implements CommandExecutor {
                 player.setCustomName(player.getName());
                 player.setPlayerListName(player.getName());
                 player.setCustomNameVisible(false);
+                // Remove from staff list
+                MainStaffEvent.staffModeList.remove(String.valueOf(player.getUniqueId()));
             }
             else {
                 // Enable Staff
@@ -84,6 +83,8 @@ public class StaffCommand implements CommandExecutor {
                 VanishEvent.vanish(player);
                 player.setAllowFlight(true);
                 player.setFlying(true);
+                // Add to staff List
+                MainStaffEvent.staffModeList.add(String.valueOf(player.getUniqueId()));
             }
             return true;
         }
