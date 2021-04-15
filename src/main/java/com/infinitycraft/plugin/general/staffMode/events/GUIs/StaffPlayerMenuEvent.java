@@ -1,6 +1,5 @@
 package com.infinitycraft.plugin.general.staffMode.events.GUIs;
 
-import com.infinitycraft.plugin.general.staffMode.GUIs.PlayerMenu;
 import com.infinitycraft.plugin.general.staffMode.GUIs.StaffPlayerMenu;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

@@ -2,7 +2,6 @@ package com.infinitycraft.plugin.general.staffMode.events.GUIs;
 
 import com.infinitycraft.plugin.general.staffMode.GUIs.PlayerActionMenu;
 import com.infinitycraft.plugin.general.staffMode.GUIs.PlayerInfoMenu;
-import com.infinitycraft.plugin.general.staffMode.GUIs.PlayerMenu;
 import com.infinitycraft.plugin.general.storageManager.SQLDatabase;
 import com.infinitycraft.plugin.general.tools.inventories.CreateInventory;
 import com.infinitycraft.plugin.general.tools.items.templates.Fillers;
@@ -19,6 +18,7 @@ import org.bukkit.inventory.PlayerInventory;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 

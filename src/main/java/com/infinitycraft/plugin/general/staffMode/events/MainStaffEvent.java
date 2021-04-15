@@ -1,29 +1,29 @@
 package com.infinitycraft.plugin.general.staffMode.events;
 
 import com.infinitycraft.plugin.general.storageManager.GetObject;
-import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
 import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerItemDamageEvent;
 
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainStaffEvent implements Listener {
+    public static List<String> staffModeList = new ArrayList<>();
     @EventHandler
     public void ItemUseEvent(PlayerInteractEvent e) {
-        if ((boolean) GetObject.getPlayer(e.getPlayer().getUniqueId(), "staffMode")){
+        if (staffModeList.contains(e.getPlayer().getUniqueId())) {
             e.setCancelled(true);
         }
     }
     @EventHandler
     public void dropItemEvent(PlayerDropItemEvent e) {
-        if ((boolean) GetObject.getPlayer(e.getPlayer().getUniqueId(), "staffMode")) {
+        if (staffModeList.contains(e.getPlayer().getUniqueId())) {
             e.setCancelled(true);
         }
     }
@@ -35,7 +35,7 @@ public class MainStaffEvent implements Listener {
     }
     @EventHandler
     public void damageItemEvent(PlayerItemDamageEvent e) {
-        if ((boolean) GetObject.getPlayer(e.getPlayer().getUniqueId(), "staffMode")) {
+        if (staffModeList.contains(e.getPlayer().getUniqueId())) {
             e.setCancelled(true);
         }
     }
@@ -47,7 +47,7 @@ public class MainStaffEvent implements Listener {
     }
     @EventHandler
     public void pickupEvent(PlayerAttemptPickupItemEvent e) {
-        if ((boolean) GetObject.getPlayer(e.getPlayer().getUniqueId(), "staffMode")) {
+        if (staffModeList.contains(e.getPlayer().getUniqueId())) {
             e.setCancelled(true);
         }
     }
