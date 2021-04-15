@@ -10,8 +10,8 @@ public class CheckPermission {
         }
         else {
             player.sendMessage(ChatColor.DARK_RED + "You don't have the permissions required to do this!");
-            player.closeInventory();
-            return false;
+            //player.closeInventory();
+            return true;
         }
     }
 }

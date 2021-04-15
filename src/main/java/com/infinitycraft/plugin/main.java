@@ -147,7 +147,7 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("market")).setExecutor(new MainGUI());
         Objects.requireNonNull(this.getCommand("add")).setExecutor(new AddItemsToMarketCommand());
         Objects.requireNonNull(this.getCommand("rename")).setExecutor(new RenameCommand());
-
+        Objects.requireNonNull(this.getCommand("fix")).setExecutor(new FixCommand());
     }
 
     /**

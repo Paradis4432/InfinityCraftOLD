@@ -104,3 +104,6 @@ commands:
   rename:
     description: "Renames an item"
     usage: /rename [name]
+  fix:
+    description: "Fixes the item in hand or items on inv"
+    usage: /fix [hand/all]
