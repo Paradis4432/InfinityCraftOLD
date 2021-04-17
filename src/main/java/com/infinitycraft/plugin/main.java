@@ -21,7 +21,9 @@ import com.infinitycraft.plugin.general.staffMode.events.MainStaffEvent;
 import com.infinitycraft.plugin.general.staffMode.events.items.*;
 import com.infinitycraft.plugin.general.storageManager.*;
 import com.infinitycraft.plugin.skyblock.craftingSystem.commands.CraftsCommand;
+import com.infinitycraft.plugin.skyblock.craftingSystem.commands.CreateCraftCommand;
 import com.infinitycraft.plugin.skyblock.craftingSystem.events.CraftSelectorEvents;
+import com.infinitycraft.plugin.skyblock.craftingSystem.events.CreateCraftEvents;
 import com.infinitycraft.plugin.skyblock.craftingSystem.events.TierGUIEvents;
 import com.infinitycraft.plugin.skyblock.IslandSystem.commands.IslandCommand;
 import com.infinitycraft.plugin.skyblock.market.AddItemsToMarketCommand;
@@ -112,6 +114,7 @@ public final class main extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new CraftSelectorEvents(), this);
         getServer().getPluginManager().registerEvents(new TierGUIEvents(), this);
         getServer().getPluginManager().registerEvents(new BetterPearls(), this);
+        getServer().getPluginManager().registerEvents(new CreateCraftEvents(), this);
     }
 
     /**
@@ -148,6 +151,8 @@ public final class main extends JavaPlugin {
         Objects.requireNonNull(this.getCommand("add")).setExecutor(new AddItemsToMarketCommand());
         Objects.requireNonNull(this.getCommand("rename")).setExecutor(new RenameCommand());
         Objects.requireNonNull(this.getCommand("fix")).setExecutor(new FixCommand());
+        Objects.requireNonNull(this.getCommand("createcraft")).setExecutor(new CreateCraftCommand());
+
     }
 
     /**

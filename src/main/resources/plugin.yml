@@ -107,3 +107,6 @@ commands:
   fix:
     description: "Fixes the item in hand or items on inv"
     usage: /fix [hand/all]
+  createcraft:
+    description: "Creates a custom craft, only for high rank staff members"
+    usage: /createcraft
